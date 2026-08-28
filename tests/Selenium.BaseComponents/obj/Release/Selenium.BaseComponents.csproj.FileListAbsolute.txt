@@ -1,0 +1,2 @@
+C:\source\Projects\mes-automation\tests\Selenium.BaseComponents\obj\Release\Selenium.BaseComponents.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\Selenium.BaseComponents\obj\Release\Selenium.BaseComponents.csproj.CoreCompileInputs.cache

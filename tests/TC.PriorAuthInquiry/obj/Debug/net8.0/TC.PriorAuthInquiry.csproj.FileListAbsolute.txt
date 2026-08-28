@@ -1,0 +1,6 @@
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.GeneratedMSBuildEditorConfig.editorconfig
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.AssemblyInfoInputs.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.AssemblyInfo.cs
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.csproj.CoreCompileInputs.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthInquiry\obj\Debug\net8.0\TC.PriorAuthInquiry.sourcelink.json

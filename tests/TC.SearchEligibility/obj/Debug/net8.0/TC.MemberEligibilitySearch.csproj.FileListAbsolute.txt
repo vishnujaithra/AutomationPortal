@@ -1,0 +1,6 @@
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.GeneratedMSBuildEditorConfig.editorconfig
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.AssemblyInfoInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.AssemblyInfo.cs
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.csproj.CoreCompileInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SearchEligibility\obj\Debug\net8.0\TC.MemberEligibilitySearch.sourcelink.json

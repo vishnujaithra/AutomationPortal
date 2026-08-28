@@ -1,0 +1,6 @@
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.GeneratedMSBuildEditorConfig.editorconfig
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.AssemblyInfoInputs.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.AssemblyInfo.cs
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.csproj.CoreCompileInputs.cache
+C:\source\Projects\mes-automation\tests\TC.PriorAuthoriztion\obj\Debug\net8.0\TC.PriorAuthoriztion.sourcelink.json

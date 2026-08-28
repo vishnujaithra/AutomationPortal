@@ -1,0 +1,6 @@
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.GeneratedMSBuildEditorConfig.editorconfig
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.AssemblyInfoInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.AssemblyInfo.cs
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.csproj.CoreCompileInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SubmitClaims\obj\Debug\net8.0\TC.SubmitClaims.sourcelink.json

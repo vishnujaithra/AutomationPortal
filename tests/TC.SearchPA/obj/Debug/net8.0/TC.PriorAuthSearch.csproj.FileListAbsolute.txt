@@ -1,0 +1,6 @@
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.csproj.AssemblyReference.cache
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.GeneratedMSBuildEditorConfig.editorconfig
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.AssemblyInfoInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.AssemblyInfo.cs
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.csproj.CoreCompileInputs.cache
+C:\source\Projects\mes-automation\tests\TC.SearchPA\obj\Debug\net8.0\TC.PriorAuthSearch.sourcelink.json
