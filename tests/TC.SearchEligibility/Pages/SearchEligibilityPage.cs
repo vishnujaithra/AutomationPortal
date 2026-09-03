@@ -2,12 +2,14 @@
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.MemberEligibilitySearch.Pages
 {
@@ -24,18 +26,18 @@ namespace TC.MemberEligibilitySearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//span[text()='Search Eligibility']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//span[text()='Search Eligibility']")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='eligibilitysearch']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='eligibilitysearch']"), TimeoutConfiguration.Element);
         }
         public IWebElement txtMedicaidBillingNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtMedicaidBillingNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtMedicaidBillingNumber")).Element;
             }
         }
 
@@ -43,42 +45,42 @@ namespace TC.MemberEligibilitySearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtBirthDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtBirthDate")).Element;
             }
         }
         public IWebElement txtFromDos
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtFromDos"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtFromDos")).Element;
             }
         }
         public IWebElement txtToDos
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtToDos"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtToDos")).Element;
             }
         }
         public IWebElement txtProcedureCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtProcedureCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtProcedureCode")).Element;
             }
         }
         public IWebElement txtSSN
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtSSN"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtSSN")).Element;
             }
         }
         public IWebElement lblErrorMsg
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_lblErrorMsg"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_lblErrorMsg")).Element;
             }
         }
 
@@ -86,42 +88,42 @@ namespace TC.MemberEligibilitySearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_btnSearch"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_btnSearch")).Element;
             }
         }
         public IWebElement btnClear
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_btnClear"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_btnClear")).Element;
             }
         }
         public IWebElement txtRecinfoMedicaidbillNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtRecinfoMedicaidbillNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtRecinfoMedicaidbillNumber")).Element;
             }
         }
         public IWebElement txtFirstName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtFirstName"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtFirstName")).Element;
             }
         }
         public IWebElement txtLast
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtLast"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtLast")).Element;
             }
         }
         public IWebElement txtDOB
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtDOB"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRecipientEligibilitySearch_txtDOB")).Element;
             }
         }
        

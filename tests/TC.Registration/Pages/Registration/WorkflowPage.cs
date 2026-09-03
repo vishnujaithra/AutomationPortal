@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;

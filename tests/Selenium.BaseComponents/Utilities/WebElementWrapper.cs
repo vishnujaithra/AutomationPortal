@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
- 
-using System.Threading;
-using Selenium.BaseComponents.Utilities;
+﻿using OpenQA.Selenium;
 using Selenium.BaseComponents.Pages;
-using OpenQA.Selenium;
 using System.Collections.ObjectModel;
-using System.Linq;
 
 namespace Selenium.BaseComponents.Utilities
 {
@@ -159,6 +152,117 @@ namespace Selenium.BaseComponents.Utilities
         public void SelectValue(String value)
         {
             WebElements.Single(we => we.GetAttribute("text") == value).Click();
+        }
+    }
+
+    /// <summary>
+    /// Smart element wrapper that automatically handles stale elements by refreshing them
+    /// This allows minimal changes to existing page objects while fixing caching issues
+    /// </summary>
+    public class SmartElement
+    {
+        private readonly IWebDriver _driver;
+        private readonly By _locator;
+        private IWebElement _cachedElement;
+        private readonly Func<By> _locatorFunc;
+
+        public SmartElement(IWebDriver driver, By locator)
+        {
+            _driver = driver;
+            _locator = locator;
+        }
+
+        public SmartElement(IWebDriver driver, Func<By> locatorFunc)
+        {
+            _driver = driver;
+            _locatorFunc = locatorFunc;
+        }
+
+        /// <summary>
+        /// Gets the element, automatically refreshing if stale
+        /// </summary>
+        public IWebElement Element
+        {
+            get
+            {
+                try
+                {
+                    // Try to use cached element first
+                    if (_cachedElement != null)
+                    {
+                        // Quick check if element is still valid
+                        var displayed = _cachedElement.Displayed;
+                        return _cachedElement;
+                    }
+                }
+                catch (StaleElementReferenceException)
+                {
+                    // Element is stale, will refresh below
+                }
+                catch (NoSuchElementException)
+                {
+                    // Element not found, will refresh below
+                }
+
+                // Refresh the element
+                return RefreshElement();
+            }
+        }
+
+        /// <summary>
+        /// Forces a refresh of the element
+        /// </summary>
+        public IWebElement RefreshElement()
+        {
+            var locator = _locatorFunc != null ? _locatorFunc() : _locator;
+            _cachedElement = _driver.FindElement(locator);
+            return _cachedElement;
+        }
+
+        // Note: Implicit conversion to IWebElement is not allowed in C# for interfaces
+        // Use the .Element property explicitly instead
+
+        // Common element operations that automatically handle staleness
+        public void Click() => Element.Click();
+        public void Clear() => Element.Clear();
+        public void SendKeys(string text) => Element.SendKeys(text);
+        public string Text => Element.Text;
+        public bool Displayed => Element.Displayed;
+        public bool Enabled => Element.Enabled;
+        public bool Selected => Element.Selected;
+        public string GetAttribute(string name) => Element.GetAttribute(name);
+    }
+
+    /// <summary>
+    /// Extension methods to create smart wrappers with minimal code changes
+    /// </summary>
+    public static class SmartElementExtensions
+    {
+        /// <summary>
+        /// Creates a smart wrapper from a locator function
+        /// Usage: var smartElement = driver.CreateSmartElement(() => By.Id("myElement"));
+        /// </summary>
+        public static SmartElement CreateSmartElement(this IWebDriver driver, Func<By> locatorFunc)
+        {
+            return new SmartElement(driver, locatorFunc);
+        }
+
+        /// <summary>
+        /// Creates a smart wrapper from a static locator
+        /// Usage: var smartElement = driver.CreateSmartElement(By.Id("myElement"));
+        /// </summary>
+        public static SmartElement CreateSmartElement(this IWebDriver driver, By locator)
+        {
+            return new SmartElement(driver, locator);
+        }
+
+        /// <summary>
+        /// Wraps an existing IWebElement property with smart refresh logic
+        /// Usage: var smartElement = existingElementProperty.AsSmartElement(driver, () => By.Id("myElement"));
+        /// </summary>
+        public static SmartElement AsSmartElement(this IWebElement element, IWebDriver driver, Func<By> locatorFunc)
+        {
+            return new SmartElement(driver, locatorFunc);
         }
     }
 }

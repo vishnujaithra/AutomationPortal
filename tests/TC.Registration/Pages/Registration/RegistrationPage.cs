@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.ProviderDataEntry.Pages.Registration
 {
@@ -35,7 +37,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return webDriver.IsElementExist(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblRequired"));
+                return BasePageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblRequired"));
             }
         }
 
@@ -43,56 +45,50 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return webDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblRequired"));
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblRequired")).Element;
             }
         }
 
         public void SetResident(string isResident)
         {
-            IWebElement webElement = null;
-            switch (isResident)
+            string xpath = isResident switch
             {
-                case "Yes":
-                    webElement = WebDriver.FindElement(By.XPath($"//*[@id='ctl00_MainContent_ucOrgInfo_{RegID}_rblIsOhioResident_0']"));
-                    break;
-                case "No":
-                    webElement = WebDriver.FindElement(By.XPath($"//*[@id='ctl00_MainContent_ucOrgInfo_{RegID}_rblIsOhioResident_1']"));
-                    break;
-            }
-            if (webElement != null)
-            {
-                webElement.Click();
-            }
+                "Yes" => $"//*[@id='ctl00_MainContent_ucOrgInfo_{RegID}_rblIsOhioResident_0']",
+                "No" => $"//*[@id='ctl00_MainContent_ucOrgInfo_{RegID}_rblIsOhioResident_1']",
+                _ => throw new ArgumentException($"Invalid resident value: {isResident}")
+            };
+            var element = webDriver.CreateSmartElement(By.XPath(xpath));
+            element.Element.Click();
         }
 
         public IWebElement BtnNext
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_btnSaveNext"));
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_btnSaveNext")).Element;
             }
         }
         public IWebElement BtnSubmitForReview
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_rptWorkflowActions_ctl00_btnAction"));
+                return webDriver.CreateSmartElement(By.Id("ctl00_rptWorkflowActions_ctl00_btnAction")).Element;
             }
         }
 
         public void SetPracticeType(string item, WebDriverWait wait)
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlPracticeType")));
-            IWebElement PracticeTypeElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlPracticeType"));
-            SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement);
+            var PracticeTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlPracticeType"));
+            SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement.Element);
             PracticeTypeElementDropDown.SelectByText(item);
         }
 
         public void SetOwnershipType(string item, WebDriverWait wait)
         {
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlOwnershiptype")));
-            IWebElement OwnershipTypeElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlOwnershiptype"));
-            SelectElement OwnershipTypeElementDropDown = new SelectElement(OwnershipTypeElement);
+            var OwnershipTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucOrgInfo_{RegID}_ddlOwnershiptype"));
+            SelectElement OwnershipTypeElementDropDown = new SelectElement(OwnershipTypeElement.Element);
             OwnershipTypeElementDropDown.SelectByText(item);
         }
 
@@ -101,14 +97,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
         public void WaitUntilPageLoad()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucRegistrationNavigation_lblTitlePS']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucRegistrationNavigation_lblTitlePS']"), TimeoutConfiguration.Element);
         }
 
         public IWebElement More
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//a[contains(@class,'btn btn-primary btn-md') and text()='More ...']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//a[contains(@class,'btn btn-primary btn-md') and text()='More ...']")).Element;
 
             }
         }
@@ -117,7 +113,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucRegistrationNavigation_btnTakeActionApprove']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_MainContent_ucRegistrationNavigation_btnTakeActionApprove']")).Element;
 
             }
         }
@@ -126,20 +122,21 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_rptWorkflowActions_ctl00_btnAction']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_rptWorkflowActions_ctl00_btnAction']")).Element;
             }
         }
 
         public string GetLoggedInUser()
         {
-            return webDriver.FindElement(By.Id("ctl00_LoginView2_LoginName1")).Text;
+            var element = webDriver.CreateSmartElement(By.Id("ctl00_LoginView2_LoginName1"));
+            return element.Element.Text;
         }
 
         public IWebElement AssignedTo
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_ddlAssignedTo"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_ddlAssignedTo")).Element;
             }
         }
 
@@ -158,7 +155,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath("//button[contains(@class,'hamburger is-closed')]"), null);
+                return webDriver.CreateSmartElement(By.XPath("//button[contains(@class,'hamburger is-closed')]")).Element;
             }
         }
 
@@ -174,8 +171,8 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//a[@title='My Queue']"), null);
-               
+                return webDriver.CreateSmartElement(By.XPath($"//a[@title='My Queue']")).Element;
+
             }
         }
     }

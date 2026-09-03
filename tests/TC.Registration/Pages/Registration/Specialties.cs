@@ -38,14 +38,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddSpecalities
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_btnAddSpecialties"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_btnAddSpecialties")).Element;
             }
         }
 
@@ -53,7 +53,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_chkIsPrimary"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_chkIsPrimary")).Element;
             }
         }
 
@@ -61,7 +61,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_ddlSpecialty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_ddlSpecialty")).Element;
             }
         }
 
@@ -69,14 +69,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_txtSpecStart"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_txtSpecStart")).Element;
             }
         }
         public IWebElement EndDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_txtSpecEnd"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucSpecialties_{RegID}_txtSpecEnd")).Element;
             }
         }
 

@@ -35,84 +35,84 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement DEARegistration_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_rblCurrentDEARegistration_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_rblCurrentDEARegistration_1")).Element;
             }
         }
         public IWebElement DEARegistration_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_rblCurrentDEARegistration_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_rblCurrentDEARegistration_0")).Element;
             }
         }
         public IWebElement DEANumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_Number"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_Number")).Element;
             }
         }
         public IWebElement DEAState
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_State"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_State")).Element;
             }
         }
         public IWebElement IssueDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_Start"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_Start")).Element;
             }
         }
         public IWebElement ExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_End"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_prov_End")).Element;
             }
         }
         public IWebElement DEAStatus
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_ddldeastatus"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_ddldeastatus")).Element;
             }
         }
         public IWebElement DEAProviderName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrescribeProvider"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrescribeProvider")).Element;
             }
         }
         public IWebElement DEAProviderNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrescribeProviderDEA"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrescribeProviderDEA")).Element;
             }
         }
         public IWebElement DEAProviderState
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_ddlPrecribeProviderState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_ddlPrecribeProviderState")).Element;
             }
         }
         public IWebElement DEAComments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrecibeComments"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucDEACertification_{RegID}_txtPrecibeComments")).Element;
             }
         }
         #endregion

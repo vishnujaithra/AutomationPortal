@@ -10,6 +10,10 @@ namespace Selenium.BaseComponents.Utilities
         public EncryptDycrypt()
         {
         }
+
+#pragma warning disable SYSLIB0021 // MD5CryptoServiceProvider and TripleDESCryptoServiceProvider are obsolete
+#pragma warning disable SYSLIB0022
+
         public static string ReturnEncryptedPassword(string TextToEncrypt)
         {
             byte[] MyEncryptedArray = UTF8Encoding.UTF8.GetBytes(TextToEncrypt);
@@ -45,5 +49,9 @@ namespace Selenium.BaseComponents.Utilities
             }
             catch { return null; }
         }
+
+#pragma warning restore SYSLIB0022
+#pragma warning restore SYSLIB0021
+
     }
 }

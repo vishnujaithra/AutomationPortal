@@ -3,12 +3,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.PriorAuthSearch.Pages
 {
@@ -25,39 +27,39 @@ namespace TC.PriorAuthSearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//span[text()='Search PA']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//span[text()='Search PA']")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='priorauthSearch']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='priorauthSearch']"), TimeoutConfiguration.Element);
         }
         public IWebElement ddlStatus
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlStatus"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlStatus")).Element;
             }
         }
         public IWebElement ddlPayerName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlPayerName"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlPayerName")).Element;
             }
         }
         public IWebElement ddlAssignment
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlAssignment"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_ddlAssignment")).Element;
             }
         }
         public IWebElement txtPriorAuthNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPriorAuthNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPriorAuthNumber")).Element;
             }
         }
 
@@ -65,7 +67,7 @@ namespace TC.PriorAuthSearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtSubmissiondate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtSubmissiondate")).Element;
             }
         }
 
@@ -74,21 +76,21 @@ namespace TC.PriorAuthSearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPatientTrackingNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPatientTrackingNumber")).Element;
             }
         }
         public IWebElement txtMedicaidBillingNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtMedicaidBillingNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtMedicaidBillingNumber")).Element;
             }
         }
         public IWebElement txtICDCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtICDCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtICDCode")).Element;
             }
         }
 
@@ -96,63 +98,63 @@ namespace TC.PriorAuthSearch.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtProcedureCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtProcedureCode")).Element;
             }
         }
         public IWebElement txtRevenuecode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtRevenuecode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtRevenuecode")).Element;
             }
         }
         public IWebElement txtBirthDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtBirthDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtBirthDate")).Element;
             }
         }
         public IWebElement txtDiagnoisCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtDiagnoisCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtDiagnoisCode")).Element;
             }
         }
         public IWebElement txtorderProvnpi
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtorderProvnpi"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtorderProvnpi")).Element;
             }
         }
         public IWebElement txtPAEffDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPAEffDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPAEffDate")).Element;
             }
         }
         public IWebElement txtPAExpDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPAExpDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_txtPAExpDate")).Element;
             }
         }
         public IWebElement btnSearch
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_btnSearch"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_btnSearch")).Element;
             }
         }
         public IWebElement btnClear
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_SearchPriorAuthorization_btnClear"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_SearchPriorAuthorization_btnClear")).Element;
             }
         }
 

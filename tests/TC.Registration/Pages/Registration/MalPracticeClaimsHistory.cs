@@ -37,7 +37,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -45,182 +45,182 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_btnMalpracticeClaims"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_btnMalpracticeClaims")).Element;
             }
         }
         public IWebElement ProfessionalLiabilityPast10Years_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblMalpractice_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblMalpractice_1")).Element;
             }
         }
         public IWebElement ProfessionalLiabilityPast10Years_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblMalpractice_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblMalpractice_0")).Element;
             }
         }
         public IWebElement DateOfOccurence
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateOccurence"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateOccurence")).Element;
             }
         }
         public IWebElement DateClaimFiled
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateClaimFiled"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateClaimFiled")).Element;
             }
         }
         public IWebElement ClaimStatus
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlClaimStatus"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlClaimStatus")).Element;
             }
         }
         public IWebElement DateClaimSettled
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateSettled"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtDateSettled")).Element;
             }
         }
         public IWebElement ProfessionalLiabilityCarrierInvolved
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtProfessionalLiability"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtProfessionalLiability")).Element;
             }
         }
         public IWebElement Address1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtAddress1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtAddress2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtCity"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtCity")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_ddlState")).Element;
             }
         }
         public IWebElement PhoneExtension
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtPhoneExt1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtPhoneExt1")).Element;
             }
         }
         public IWebElement ZipCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_nbZipFirst5"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement PhoneNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtPhoneNo1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ucAddress_txtPhoneNo1")).Element;
             }
         }
         public IWebElement PolicyNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtPolicyNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtPolicyNumber")).Element;
             }
         }
         public IWebElement MethodOfResolution
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlMethodofResoultion"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlMethodofResoultion")).Element;
             }
         }
         public IWebElement SettledAmount
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtSettledAmount"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtSettledAmount")).Element;
             }
         }
         public IWebElement DescribeAllegationAgainstYou
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtAllegations"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtAllegations")).Element;
             }
         }
         public IWebElement WereYou_Primary
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblDefendant_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblDefendant_0")).Element;
             }
         }
         public IWebElement WereYou_Co
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblDefendant_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_rblDefendant_1")).Element;
             }
         }
         public IWebElement NoOfOtherDefendants
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtnoofOtherDefendents"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtnoofOtherDefendents")).Element;
             }
         }
         public IWebElement YourRoleInCase
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtRoleinCase"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtRoleinCase")).Element;
             }
         }
         public IWebElement AllegedInjuryToPatient
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtAllegedInjury"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_txtAllegedInjury")).Element;
             }
         }
         public IWebElement AllegedInjuryResultInDeath
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlIsDead"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlIsDead")).Element;
             }
         }
         public IWebElement KnowledgeOnNPDB
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlIsNPDB"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMalpracticeClaim_{RegID}_ddlIsNPDB")).Element;
             }
         }
         #endregion

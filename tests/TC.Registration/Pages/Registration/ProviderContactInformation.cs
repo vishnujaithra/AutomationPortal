@@ -44,91 +44,91 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement PrimaryContactName
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_txtPrimaryContactName"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_txtPrimaryContactName")).Element;
             }
         }
         public IWebElement Title
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtTitle"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtTitle")).Element;
             }
         }
         public IWebElement Address1
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtAddress1"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtAddress2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtCity"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtCity")).Element;
             }
         }
         public IWebElement ZipCode
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_nbZipFirst5"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement ZipCodeExt
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_nbZipLast4"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_nbZipLast4")).Element;
             }
         }
         public IWebElement Phone1
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneNo1"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneNo1")).Element;
             }
         }
         public IWebElement Phone1Ext
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneExt1"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneExt1")).Element;
             }
         }
         public IWebElement Phone2
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneNo2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneNo2")).Element;
             }
         }
         public IWebElement Phone2Ext
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneExt2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtPhoneExt2")).Element;
             }
         }
         public IWebElement EmailAddress1
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtEmail1"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_txtEmail1")).Element;
             }
         }
 
@@ -142,49 +142,37 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
         public void SetState(string item)
         {
-            IWebElement PracticeTypeElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_ddlState"));
+            IWebElement PracticeTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_ddlState")).Element;
             SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement);
             PracticeTypeElementDropDown.SelectByText(item);
         }
         public void SetCounty(string item)
         {
-            IWebElement PracticeTypeElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_ddlCounty"));
+            IWebElement PracticeTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_ddlCounty")).Element;
             SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement);
             PracticeTypeElementDropDown.SelectByText(item);
         }
         public void SetPhone1MessageDisclaimer(string isYesorNo)
         {
-            IWebElement webElement = null;
-            switch (isYesorNo)
+            string xpath = isYesorNo switch
             {
-                case "Yes":
-                    webElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell1_0"));
-                    break;
-                case "No":
-                    webElement = WebDriver.FindElement(By.XPath($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell1_1"));
-                    break;
-            }
-            if (webElement != null)
-            {
-                webElement.Click();
-            }
+                "Yes" => $"//*[@id='ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell1_0']",
+                "No" => $"//*[@id='ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell1_1']",
+                _ => throw new ArgumentException($"Invalid value: {isYesorNo}")
+            };
+            var element = WebDriver.CreateSmartElement(By.XPath(xpath));
+            element.Element.Click();
         }
         public void SetPhone2MessageDisclaimer(string isYesorNo)
         {
-            IWebElement webElement = null;
-            switch (isYesorNo)
+            string xpath = isYesorNo switch
             {
-                case "Yes":
-                    webElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell2_0"));
-                    break;
-                case "No":
-                    webElement = WebDriver.FindElement(By.XPath($"ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell2_1"));
-                    break;
-            }
-            if (webElement != null)
-            {
-                webElement.Click();
-            }
+                "Yes" => $"//*[@id='ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell2_0']",
+                "No" => $"//*[@id='ctl00_MainContent_ucPrimaryContactAddress_{RegID}_ucAddress_rbCell2_1']",
+                _ => throw new ArgumentException($"Invalid value: {isYesorNo}")
+            };
+            var element = WebDriver.CreateSmartElement(By.XPath(xpath));
+            element.Element.Click();
         }
 
         #endregion

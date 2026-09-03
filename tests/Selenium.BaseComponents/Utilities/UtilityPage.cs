@@ -1,19 +1,27 @@
-﻿using System;
-using System.Configuration;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System.Threading;
- 
+using System.Configuration;
+
 
 namespace Selenium.BaseComponents.Utilities
 {
 
     public class UtilityPage
     {
-        public static int PageTimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["ControlTimeout"]);
-        public static int ControlTimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["PageTimeout"]);
-        public static int SleepTimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["SleepTimeOut"]);
-        public static int DBTimeOut = Convert.ToInt32(ConfigurationManager.AppSettings["DBTimeout"]);
+        public static int PageTimeOut = GetAppSettingInt("ControlTimeout", 60);
+        public static int ControlTimeOut = GetAppSettingInt("PageTimeout", 60);
+        public static int SleepTimeOut = GetAppSettingInt("SleepTimeOut", 60);
+        public static int DBTimeOut = GetAppSettingInt("DBTimeout", 60);
+
+        private static int GetAppSettingInt(string key, int defaultValue)
+        {
+            try
+            {
+                var value = ConfigurationManager.AppSettings[key];
+                return value != null ? Convert.ToInt32(value) : defaultValue;
+            }
+            catch { return defaultValue; }
+        }
 
         public static void WaitFor(IWebDriver Driver, Func<IWebDriver, bool> waitCondition, int timeout = 100)
         {

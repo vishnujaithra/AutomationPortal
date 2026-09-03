@@ -2,12 +2,14 @@
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.PriorAuthoriztion.Pages
 {
@@ -23,39 +25,41 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath("//input[@value='dental']"), null);
+                return webDriver.CreateSmartElement(By.XPath("//input[@value='dental']")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_rblClaimType']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_rblClaimType']"), TimeoutConfiguration.Element);
         }
         public IWebElement ddlAuthorization
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlAuthorization"), null);
+                // MINIMAL CHANGE: Use smart wrapper to prevent stale element issues
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlAuthorization")).Element;
             }
         }
         public IWebElement ddlSubCapitaPayerID
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlSubCapitaPayerIDs"), null);
+                // MINIMAL CHANGE: Use smart wrapper to prevent stale element issues
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlSubCapitaPayerIDs")).Element;
             }
         }
         public IWebElement ddlAssignment
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlAssignment"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlAssignment")).Element;
             }
         }
         public IWebElement ddlServiceType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlServiceType"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlServiceType")).Element;
             }
         }
 
@@ -65,21 +69,21 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMedicaidBillingNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMedicaidBillingNumber")).Element;
             }
         }
         public IWebElement txtBirthDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtBirthDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtBirthDate")).Element;
             }
         }
         public IWebElement txtPatientTrckNum
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPatientTrckNum"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPatientTrckNum")).Element;
             }
         }
 
@@ -87,12 +91,12 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("divpnlRecipientLoader"), null);
+                return webDriver.CreateSmartElement(By.Id("divpnlRecipientLoader")).Element;
             }
         }
         public void WaitUntilLoaderDisappear()
         {
-            PageHelper.WaitUntilElementNotAvailable(WebDriver, By.Id("divpnlRecipientLoader"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementNotAvailable(webDriver, By.Id("divpnlRecipientLoader"), TimeoutConfiguration.Element);
         }
 
         #endregion
@@ -103,28 +107,28 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactName"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactName")).Element;
             }
         }
         public IWebElement txtContactLastName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactLastName"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactLastName")).Element;
             }
         }
         public IWebElement txtContactNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtContactNumber")).Element;
             }
         }
         public IWebElement txtContactExt
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtExt"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtExt")).Element;
             }
         }
 
@@ -137,70 +141,70 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtpalceofservice"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtpalceofservice")).Element;
             }
         }
         public IWebElement txtAccDtService
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtAccDtService"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtAccDtService")).Element;
             }
         }
         public IWebElement txtDateOfpatientEvent
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_TextBox3"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_TextBox3")).Element;
             }
         }
         public IWebElement txtProfOnsetIllness
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtProfOnsetIllness"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtProfOnsetIllness")).Element;
             }
         }
         public IWebElement txtMenDtInst
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMenDtInst"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMenDtInst")).Element;
             }
         }
         public IWebElement txtEstDOB
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtEstDOB"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtEstDOB")).Element;
             }
         }
         public IWebElement txtPANumInst
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPANumInst"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPANumInst")).Element;
             }
         }
         public IWebElement ddlLvlServiceInst
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlLvlServiceInst"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlLvlServiceInst")).Element;
             }
         }
         public IWebElement ddlDelayedInst
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlDelayedInst"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlDelayedInst")).Element;
             }
         }
         public IWebElement pnlPlaceofServiceSearchPopup
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlplaceofServiceSearch"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlplaceofServiceSearch")).Element;
             }
         }
 
@@ -230,20 +234,20 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtSPNPI"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtSPNPI")).Element;
             }
         }
 
         public void WaitUntilMedicaidIsFetched()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMedicaidID"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtMedicaidID"), TimeoutConfiguration.Element);
         }
 
         public IWebElement pnlService
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlService"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlService")).Element;
             }
         }
 
@@ -254,7 +258,7 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblseporderproviderinfo"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblseporderproviderinfo")).Element;
             }
         }
 
@@ -262,19 +266,19 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtorderingprovidernpi"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtorderingprovidernpi")).Element;
             }
         }
         public IWebElement pnlorderproviderinfo
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlorderproviderinfo"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlorderproviderinfo")).Element;
             }
         }
         public void WaitUntilOrderingMedicaidIsFetched()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtOMID"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtOMID"), TimeoutConfiguration.Element);
         }
 
         //
@@ -287,42 +291,42 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnDiagnosisAdd"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnDiagnosisAdd")).Element;
             }
         }
         public IWebElement btnDiagnosisAddLine
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnDiagnosisAddLine"), null);
+                return webDriver.CreateSmartElement(By.Id("btnDiagnosisAddLine")).Element;
             }
         }
         public IWebElement ddlDiagnosisCodeType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlDiagnosisCodeType"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlDiagnosisCodeType")).Element;
             }
         }
         public IWebElement txtLnDiagnosisCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtLnDiagnosisCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtLnDiagnosisCode")).Element;
             }
         }
         public IWebElement txtDiagnosisDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisDate"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisDate")).Element;
             }
         }
         public IWebElement btnDiagnosisEditCancel
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnDiagnosisEditCancel"), null);
+                return webDriver.CreateSmartElement(By.Id("btnDiagnosisEditCancel")).Element;
             }
         }
 
@@ -330,7 +334,7 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepDiagnosis"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepDiagnosis")).Element;
             }
         }
 
@@ -338,7 +342,7 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription")).Element;
             }
         }
         #endregion
@@ -348,98 +352,98 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnDentalServiceDetailAdd1"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnDentalServiceDetailAdd1")).Element;
             }
         }
         public IWebElement txtDentalSDProcCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalSDProcCode"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalSDProcCode")).Element;
             }
         }
         public IWebElement txtDentalProcCodeDescription
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalProcCodeDescription"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalProcCodeDescription")).Element;
             }
         }
         public IWebElement txtDentalReqUnits
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqUnits"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqUnits")).Element;
             }
         }
         public IWebElement txtDentalReqDollars
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqDollars"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqDollars")).Element;
             }
         }
         public IWebElement txtDentalReqFDOS
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqFDOS"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqFDOS")).Element;
             }
         }
         public IWebElement txtDentalReqTDOS
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqTDOS"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalReqTDOS")).Element;
             }
         }
         public IWebElement txtDentalServTrackingNo
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalServTrackingNo"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalServTrackingNo")).Element;
             }
         }
         public IWebElement txtDentalProvServnote
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalProvServnote"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalProvServnote")).Element;
             }
         }
         public IWebElement ddDentalToothNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalToothNumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalToothNumber")).Element;
             }
         }
         public IWebElement ddDentalOralCavity1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalOralCavity1"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalOralCavity1")).Element;
             }
         }
         public IWebElement ddToothSurface1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddToothSurface1"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddToothSurface1")).Element;
             }
         }
         public IWebElement ddDentalProsthsis
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalProsthsis"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddDentalProsthsis")).Element;
             }
         }
         public IWebElement btnServDentalAddUpdate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnServDentalUpdate"), null);
+                return webDriver.CreateSmartElement(By.Id("btnServDentalUpdate")).Element;
             }
         }
         public void SetDentalToothNumber(string text)
@@ -476,7 +480,7 @@ namespace TC.PriorAuthoriztion.Pages
         }
         public void WaituntilProcedureCodeVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalSDProcCode']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_txtDentalSDProcCode']"), TimeoutConfiguration.Element);
         }
 
         #endregion
@@ -487,28 +491,28 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtProviderNotes"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtProviderNotes")).Element;
             }
         }
         public IWebElement btnprovNoteSave
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnprovNoteSave"), null);
+                return webDriver.CreateSmartElement(By.Id("btnprovNoteSave")).Element;
             }
         }
         public IWebElement btnprovNoteEdit
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnprovNoteEdit"), null);
+                return webDriver.CreateSmartElement(By.Id("btnprovNoteEdit")).Element;
             }
         }
         public IWebElement btnprovNoteDelete
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("btnprovNoteDelete"), null);
+                return webDriver.CreateSmartElement(By.Id("btnprovNoteDelete")).Element;
             }
         }
 
@@ -516,7 +520,7 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepProvidersNotes"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepProvidersNotes")).Element;
             }
         }
 
@@ -529,35 +533,35 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_priorDentalAttachmentUpload"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_priorDentalAttachmentUpload")).Element;
             }
         }
         public IWebElement ddlPriorDentalAuthDocType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlPriorDentalAuthDocType"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_ddlPriorDentalAuthDocType")).Element;
             }
         }
         public IWebElement txtPriorDentalAttachmentNote
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPriorDentalAttachmentNote"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtPriorDentalAttachmentNote")).Element;
             }
         }
         public IWebElement btnAddDentalAttachment
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnAddDentalAttachment"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnAddDentalAttachment")).Element;
             }
         }
         public IWebElement btnAddDentalAttachmentsGrid
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_gvDentalAttachment"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_gvDentalAttachment")).Element;
             }
         }
 
@@ -565,7 +569,7 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepDentalAttachment"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblsepDentalAttachment")).Element;
             }
         }
 
@@ -573,21 +577,24 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnSubmit"), null);
+                // MINIMAL CHANGE: Just add .Element to use smart wrapper
+                // This automatically handles stale elements without changing the property structure
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnSubmit")).Element;
             }
         }
         public IWebElement btnSave
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnSave"), null);
+                // MINIMAL CHANGE: Just add .Element to use smart wrapper
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnSave")).Element;
             }
         }
         public IWebElement btnClearAll
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnClearAll"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnClearAll")).Element;
             }
         }
 
@@ -595,14 +602,14 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnmPATXNFailure"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnmPATXNFailure")).Element;
             }
         }
         public IWebElement pnmPATXNSuccess
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnmPATXNSuccess"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnmPATXNSuccess")).Element;
             }
         }
 

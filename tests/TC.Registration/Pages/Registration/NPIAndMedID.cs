@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.ProviderDataEntry.Pages.Registration
 {
@@ -40,7 +42,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl04_EditButton']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl04_EditButton']")).Element;
 
             }
         }
@@ -49,7 +51,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_txtProviderEffectiveDate']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_txtProviderEffectiveDate']")).Element;
 
             }
         }
@@ -57,7 +59,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_btnUpdate']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_btnUpdate']")).Element;
 
             }
         }
@@ -65,7 +67,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
         public void WaitUntilPageLoad()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver,
+            BasePageHelper.WaitUntilElementIsVisible(webDriver,
                                   By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_txtProviderEffectiveDate']"), TimeoutConfiguration.Element);
         }
 
@@ -78,7 +80,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             txtProviderEffectiveDate.SendKeys(DateTime.Now.ToString("MM/dd/yyyy"));
             btnUpdate.Click();
 
-            PageHelper.WaitUntilElementNotAvailable(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_btnUpdate']"),
+            BasePageHelper.WaitUntilElementNotAvailable(webDriver, By.XPath($"//*[@id='ctl00_MainContent_ucNPIandMedId_{RegID}_ucEnrollmentData_rgApplicationType_ctl00_ctl05_btnUpdate']"),
                 TimeoutConfiguration.Element);
         }
     }

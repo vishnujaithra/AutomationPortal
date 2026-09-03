@@ -38,7 +38,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucGroupReview_txtRegID"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucGroupReview_txtRegID")).Element;
             }
         }
 
@@ -46,7 +46,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucGroupReview_btnSearch"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucGroupReview_btnSearch")).Element;
             }
         }
 
@@ -54,7 +54,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//a[@title='Provider Search']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//a[@title='Provider Search']")).Element;
             }
         }
        
@@ -67,14 +67,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//table[@id='ctl00_MainContent_ucGroupReview_gvProviders']//a[text()='Review']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//table[@id='ctl00_MainContent_ucGroupReview_gvProviders']//a[text()='Review']")).Element;
             }
         }
         public IWebElement SidebarMenu
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"menu"), null);
+                return webDriver.CreateSmartElement(By.Id($"menu")).Element;
             }
         }
 

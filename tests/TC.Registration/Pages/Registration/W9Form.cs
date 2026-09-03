@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Support.UI;
 using Selenium.BaseComponents.Pages;
 using SeleniumExtensions.Extensions;
 using Selenium.BaseComponents.Utilities;
@@ -35,7 +35,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -43,91 +43,91 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl01_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl01_rbTaxClass")).Element;
             }
         }
         public IWebElement C_Corporation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl02_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl02_rbTaxClass")).Element;
             }
         }
         public IWebElement S_Corporation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl03_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl03_rbTaxClass")).Element;
             }
         }
         public IWebElement PartnerShip
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl04_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl04_rbTaxClass")).Element;
             }
         }
         public IWebElement TrustOrEstate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl05_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl05_rbTaxClass")).Element;
             }
         }
         public IWebElement LimitedLiabilityC_Corporation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl06_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl06_rbTaxClass")).Element;
             }
         }
         public IWebElement LimitedLiabilityS_Corporation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl07_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl07_rbTaxClass")).Element;
             }
         }
         public IWebElement LimitedLiabilityPartnerShip
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl08_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl08_rbTaxClass")).Element;
             }
         }
         public IWebElement Other
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl09_rbTaxClass"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rptTaxClassification_ctl09_rbTaxClass")).Element;
             }
         }
         public IWebElement W9
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rbIndicate_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rbIndicate_0")).Element;
             }
         }
         public IWebElement Form149
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rbIndicate_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_rbIndicate_1")).Element;
             }
         }
         public IWebElement FileUpload
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_174_RadAsyncUpload1file0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxInfo_{RegID}_174_RadAsyncUpload1file0")).Element;
             }
         }
         public IWebElement FileDownload
         {
             get
             {
-                return webDriver.FindElement(By.XPath("//a[contains(@id,'_LnkButtonDownload')]"));
+                return webDriver.CreateSmartElement(By.XPath("//a[contains(@id,'_LnkButtonDownload')]")).Element;
             }
         }
 
@@ -136,14 +136,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return webDriver.FindElement(By.XPath("//span[text()='EFT Banking']/ancestor::span[1]/img"));
+                return webDriver.CreateSmartElement(By.XPath("//span[text()='EFT Banking']/ancestor::span[1]/img")).Element;
             }
         }
         public IWebElement PopUp_Confirmation
         {
             get
             {
-                return webDriver.FindElement(By.XPath("//span[text()='Ok']/ancestor::button"));
+                return webDriver.CreateSmartElement(By.XPath("//span[text()='Ok']/ancestor::button")).Element;
             }
         }
         public IWebElement getFormType(string value)

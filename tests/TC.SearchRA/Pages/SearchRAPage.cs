@@ -3,12 +3,14 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.SearchRA.Pages
 {
@@ -25,18 +27,18 @@ namespace TC.SearchRA.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//span[text()='Search-RA']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//span[text()='Search-RA']")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_ERemittanceAdvice_sepInstructions']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_ERemittanceAdvice_sepInstructions']"), TimeoutConfiguration.Element);
         }
         public IWebElement ddlPrimaryDestinationPayer
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_ddlPrimaryDestinationPayer"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_ddlPrimaryDestinationPayer")).Element;
             }
         }
 
@@ -44,42 +46,42 @@ namespace TC.SearchRA.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_txtRANumber"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_txtRANumber")).Element;
             }
         }
         public IWebElement txtICN
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_txtICN"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_txtICN")).Element;
             }
         }
         public IWebElement txtDateAvailableFrom
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_txtDateAvailableFrom"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_txtDateAvailableFrom")).Element;
             }
         }
         public IWebElement txtDateAvailableTo
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_txtDateAvailableTo"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_txtDateAvailableTo")).Element;
             }
         }
         public IWebElement btnSearch
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_btnSearch"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_btnSearch")).Element;
             }
         }
         public IWebElement btnClear
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ERemittanceAdvice_btnClear"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ERemittanceAdvice_btnClear")).Element;
             }
         }
 

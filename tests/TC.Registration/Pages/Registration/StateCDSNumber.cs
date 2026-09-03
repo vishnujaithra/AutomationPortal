@@ -34,49 +34,49 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddStateCDSNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_btnAddCDS"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_btnAddCDS")).Element;
             }
         }
         public IWebElement CDSNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtSTATE_CDS_Number"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtSTATE_CDS_Number")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_ddlState")).Element;
             }
         }
         public IWebElement DateIssued
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtDateIssued"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtDateIssued")).Element;
             }
         }
         public IWebElement ExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtExpirationDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_txtExpirationDate")).Element;
             }
         }
         public IWebElement FileUpload
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCDS_{RegID}_233_RadAsyncUpload1file0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCDS_{RegID}_233_RadAsyncUpload1file0")).Element;
             }
         }
         #endregion

@@ -1,12 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
  
 
@@ -27,12 +29,12 @@ namespace TC.PriorAuthoriztion.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//span[text()='Submit PA']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//span[text()='Submit PA']")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_ucRegProgressBar_lblPRONPI2']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='ctl00_MainContent_ucRegProgressBar_lblPRONPI2']"), TimeoutConfiguration.Element);
         }
     }
 }

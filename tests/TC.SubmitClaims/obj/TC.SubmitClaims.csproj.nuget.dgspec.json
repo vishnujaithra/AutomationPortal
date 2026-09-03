@@ -1,42 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\source\\Projects\\mes-automation\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj": {}
+    "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj": {}
   },
   "projects": {
-    "C:\\source\\Projects\\mes-automation\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj": {
-      "restore": {
-        "projectUniqueName": "C:\\source\\Projects\\mes-automation\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj",
-        "projectName": "Selenium.BaseComponents",
-        "projectPath": "C:\\source\\Projects\\mes-automation\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj",
-        "UsingMicrosoftNETSdk": false,
-        "frameworks": {
-          "net48": {
-            "framework": "net48",
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net48": {
-          "framework": "net48"
-        }
-      }
-    },
-    "C:\\source\\Projects\\mes-automation\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj": {
+    "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\source\\Projects\\mes-automation\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj",
-        "projectName": "TC.SubmitClaims",
-        "projectPath": "C:\\source\\Projects\\mes-automation\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj",
-        "packagesPath": "C:\\Users\\CA_OHPNM_DEV_31\\.nuget\\packages\\",
-        "outputPath": "C:\\source\\Projects\\mes-automation\\tests\\TC.SubmitClaims\\obj\\",
+        "projectUniqueName": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj",
+        "projectName": "Selenium.BaseComponents",
+        "projectPath": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj",
+        "packagesPath": "C:\\Users\\Vishnu_V_Reddy\\.nuget\\packages\\",
+        "outputPath": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\CA_OHPNM_DEV_31\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Vishnu_V_Reddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -45,15 +26,140 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dcsartifacts.dell.com/artifactory/api/nuget/nuget": {},
+          "https://dcsartifacts.dell.com/artifactory/api/nuget/nuget-local": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "framework": "net8.0",
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.300"
+      },
+      "frameworks": {
+        "net8.0": {
+          "framework": "net8.0",
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[10.0.11, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Selenium.Support": {
+              "target": "Package",
+              "version": "[4.47.0, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.47.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Data.OleDb": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "WebDriverManager": {
+              "target": "Package",
+              "version": "[2.17.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj",
+        "projectName": "TC.SubmitClaims",
+        "projectPath": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\TC.SubmitClaims\\TC.SubmitClaims.csproj",
+        "packagesPath": "C:\\Users\\Vishnu_V_Reddy\\.nuget\\packages\\",
+        "outputPath": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\TC.SubmitClaims\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Vishnu_V_Reddy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dcsartifacts.dell.com/artifactory/api/nuget/nuget": {},
+          "https://dcsartifacts.dell.com/artifactory/api/nuget/nuget-local": {}
         },
         "frameworks": {
           "net8.0": {
             "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\source\\Projects\\mes-automation\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj": {
-                "projectPath": "C:\\source\\Projects\\mes-automation\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj"
+              "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj": {
+                "projectPath": "C:\\Personal\\AutomationPortal-main\\AutomationPortal-main\\tests\\Selenium.BaseComponents\\Selenium.BaseComponents.csproj"
               }
             }
           }
@@ -68,32 +174,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "10.0.300"
       },
       "frameworks": {
         "net8.0": {
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
-            "DotNetSeleniumExtras.WaitHelpers": {
-              "target": "Package",
-              "version": "[3.11.0, )"
-            },
-            "MSTest.TestAdapter": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
-            "MSTest.TestFramework": {
-              "target": "Package",
-              "version": "[3.1.1, )"
-            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.8.0, )"
-            },
-            "Microsoft.TestPlatform.ObjectModel": {
-              "target": "Package",
-              "version": "[17.13.0, )"
             },
             "NUnit": {
               "target": "Package",
@@ -105,13 +195,13 @@
               "target": "Package",
               "version": "[4.4.0, )"
             },
+            "NUnit3TestAdapter": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
-            },
-            "Selenium.WebDriver.ChromeDriver": {
-              "target": "Package",
-              "version": "[131.0.6778.20400, )"
             },
             "coverlet.collector": {
               "target": "Package",
@@ -134,7 +224,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

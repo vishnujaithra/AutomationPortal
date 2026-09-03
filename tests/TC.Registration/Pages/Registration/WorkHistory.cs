@@ -36,7 +36,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -44,175 +44,175 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_btnAddWorkItem"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_btnAddWorkItem")).Element;
             }
         }
         public IWebElement CurrentEmployer
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_chkIsCurrentEmployer"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_chkIsCurrentEmployer")).Element;
             }
         }
         public IWebElement EmployerName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbOrgName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbOrgName")).Element;
             }
         }
         public IWebElement StartDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbFrom"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbFrom")).Element;
             }
         }
         public IWebElement EndDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_txtEndDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_txtEndDate")).Element;
             }
         }
         public IWebElement OrganizationName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtOrgName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtOrgName")).Element;
             }
         }
         public IWebElement Address1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtAddress1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtAddress2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtCity"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtCity")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_ddlState")).Element;
             }
         }
         public IWebElement County
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_ddlCounty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_ddlCounty")).Element;
             }
         }
         public IWebElement PhoneExtension
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtPhoneExt1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtPhoneExt1")).Element;
             }
         }
         public IWebElement ZipCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_nbZipFirst5"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement PhoneNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtPhoneNo1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtPhoneNo1")).Element;
             }
         }
         public IWebElement FaxNumber1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtFaxNo1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtFaxNo1")).Element;
             }
         }
         public IWebElement ContactName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtContact"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtContact")).Element;
             }
         }
         public IWebElement EmailAddress1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtEmail1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtEmail1")).Element;
             }
         }
         public IWebElement EmailAddress2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtEmail2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ucAddress_txtEmail2")).Element;
             }
         }
         public IWebElement AdditionalInformation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbAdditional"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbAdditional")).Element;
             }
         }
         public IWebElement ReasonForDeparture
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbReasonForDepart"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbReasonForDepart")).Element;
             }
         }
         public IWebElement MilitaryReserve
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ddlmiltaryreserve"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_ddlmiltaryreserve")).Element;
             }
         }
         public IWebElement AddGapHistory
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_imgAddGap"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_imgAddGap")).Element;
             }
         }
         public IWebElement GapStartDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapStartDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapStartDate")).Element;
             }
         }
         public IWebElement GapEndDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapEndDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapEndDate")).Element;
             }
         }
         public IWebElement ReasonForGap
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapText"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucWorkHistoryDetails_{RegID}_tbGapText")).Element;
             }
         }
         #endregion

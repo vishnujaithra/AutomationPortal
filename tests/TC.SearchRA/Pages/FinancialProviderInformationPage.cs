@@ -1,12 +1,14 @@
 ﻿using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BasePageHelper = Selenium.BaseComponents.Utilities.PageHelper;
 
 namespace TC.SearchRA.Pages
 {
@@ -24,7 +26,7 @@ namespace TC.SearchRA.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"lblTitle"), null);
+                return webDriver.CreateSmartElement(By.Id($"lblTitle")).Element;
             }
         }
 
@@ -32,7 +34,7 @@ namespace TC.SearchRA.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_txtMedicaidNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_txtMedicaidNumber")).Element;
             }
         }
 
@@ -40,12 +42,12 @@ namespace TC.SearchRA.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_lnkBtnPriorAuth"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_lnkBtnPriorAuth")).Element;
             }
         }
         public void WaitUntilElementIsVisible()
         {
-            PageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='lblTitle']"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(webDriver, By.XPath("//*[@id='lblTitle']"), TimeoutConfiguration.Element);
         }
     }
 }

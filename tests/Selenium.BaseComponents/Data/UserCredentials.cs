@@ -1,7 +1,3 @@
-
-using System;
-using System.Collections.Generic;
-
 namespace Selenium.BaseComponents.Data
 {
     public static class UserCredentials
@@ -34,10 +30,9 @@ namespace Selenium.BaseComponents.Data
         {
             static Dictionary<string, string> passwords = new Dictionary<string, string>() {
                                                 {"DEV01","Abcde12!"},
-                                                 {"DEV01P3","Abcde12!"},
+                                                {"DEV01P3","Abcde12!"},
                                                 {"INT01","Abcde12!"},
                                                 {"E2EP3","Abcde123!"},
-
                                                 {"INT01P3","Abcde12!"},
                                                 {"E2E01P3","Abcde12!"},
                                                 {"PROD","Abcde12!"},

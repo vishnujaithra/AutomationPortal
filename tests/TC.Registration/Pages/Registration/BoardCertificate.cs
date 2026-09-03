@@ -37,63 +37,63 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddBoardCertificate
         {
             get
             {
-                return PageHelper.FindElement(webDriver,By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_btnAddBoardCertification"),null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_btnAddBoardCertification")).Element;
             }
         }
         public IWebElement BoardCertificateNo
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_rblBoardCertified_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_rblBoardCertified_0")).Element;
             }
         }
         public IWebElement BoardCertificateYes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_rblBoardCertified_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_rblBoardCertified_1")).Element;
             }
         }
         public IWebElement BoardCertification
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_ddlBoardCertification"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_ddlBoardCertification")).Element;
             }
         }
         public IWebElement BoardSpecialty
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_ddlBoardSpecialty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_ddlBoardSpecialty")).Element;
             }
         }
         public IWebElement CertificationNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtCertificationNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtCertificationNumber")).Element;
             }
         }
         public IWebElement EffectiveDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtEffectiveDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtEffectiveDate")).Element;
             }
         }
         public IWebElement ExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtExpirationDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucBoardCertification_{RegID}_txtExpirationDate")).Element;
             }
         }
         #endregion

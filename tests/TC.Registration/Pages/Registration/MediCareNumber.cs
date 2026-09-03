@@ -34,49 +34,49 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddMediCareNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_btnAddMedicare"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_btnAddMedicare")).Element;
             }
         }
         public IWebElement CCNMediCareType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_rblMedicareNumberType_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_rblMedicareNumberType_0")).Element;
             }
         }
         public IWebElement PTANMediCareType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_rblMedicareNumberType_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_rblMedicareNumberType_1")).Element;
             }
         }
         public IWebElement MediCareNum
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_txtMedicareNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_txtMedicareNumber")).Element;
             }
         }
         public IWebElement MediCareState
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_ddlProvState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_ddlProvState")).Element;
             }
         }
         public IWebElement MediCareFileUpload
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_1187_RadAsyncUpload1file0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucMiscellaneous_{RegID}_ucMedicare_1187_RadAsyncUpload1file0")).Element;
             }
         }
         #endregion

@@ -37,21 +37,21 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement TaxonomyTable
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_grdTaxonomies"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_grdTaxonomies")).Element;
             }
         }
         public IWebElement IsPrimaryTaxonomy
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_chkIsPrimary"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_chkIsPrimary")).Element;
             }
         }
 
@@ -59,7 +59,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_ddlTaxonomy"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_ddlTaxonomy")).Element;
             }
         }
 
@@ -67,21 +67,21 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_txtTaxonomyStart"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_txtTaxonomyStart")).Element;
             }
         }
         public IWebElement EndDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_txtTaxonomyEnd"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_txtTaxonomyEnd")).Element;
             }
         }
         public IWebElement AddTaxonomyBtn
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_btnAddTaxonomies"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucTaxonomies_{RegID}_btnAddTaxonomies")).Element;
             }
         }
         #endregion

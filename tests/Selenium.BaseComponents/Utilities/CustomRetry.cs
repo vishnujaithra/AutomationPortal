@@ -46,7 +46,7 @@ namespace Selenium.BaseComponents
                         continue;
                     }
 
-                    if (context.CurrentResult.AssertionResults != null && context.CurrentResult.AssertionResults.Count> 0)
+                    if (context.CurrentResult.AssertionResults != null && context.CurrentResult.AssertionResults.Count > 0)
                         break;
 
                     if (context.CurrentResult.ResultState.Status != ResultState.Failure.Status)

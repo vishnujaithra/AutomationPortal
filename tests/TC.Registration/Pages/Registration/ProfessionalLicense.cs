@@ -38,21 +38,21 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddLicenseBtn
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_btnAddLicenses"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_btnAddLicenses")).Element;
             }
         }
         public IWebElement LicenseState
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ddlLicenseState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ddlLicenseState")).Element;
             }
         }
 
@@ -60,7 +60,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ddlBoardName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ddlBoardName")).Element;
             }
         }
 
@@ -68,112 +68,112 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_Number"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_Number")).Element;
             }
         }
         public IWebElement LicenseEffectiveDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_Effective"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_Effective")).Element;
             }
         }
         public IWebElement LicenseExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_End"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_prov_End")).Element;
             }
         }
         public IWebElement LicenseAddress1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtAddress1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtAddress1")).Element;
             }
         }
         public IWebElement LicenseAddress2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtAddress2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtAddress2")).Element;
             }
         }
         public IWebElement LicenseCity
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtCity"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_txtCity")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_ddlState")).Element;
             }
         }
         public IWebElement LicenseCountry
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_ddlCounty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_ddlCounty")).Element;
             }
         }
         public IWebElement LicenseZip
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_nbZipFirst5"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucLicenseAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement EndorsementNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbEndorsemnetNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbEndorsemnetNumber")).Element;
             }
         }
         public IWebElement EndorsementStatus
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbEndorsemnetStatus"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbEndorsemnetStatus")).Element;
             }
         }
         public IWebElement EndorsementFocus
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbFocus"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbFocus")).Element;
             }
         }
         public IWebElement EndorsementSpecality
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbSpecialty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbSpecialty")).Element;
             }
         }
         public IWebElement CertifyingOrganization
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertifyingOrg"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertifyingOrg")).Element;
             }
         }
         public IWebElement CertificationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertificationDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertificationDate")).Element;
             }
         }
         public IWebElement CertificationExpiration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertificationEndDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucLicenses_{RegID}_ucSpecialtyFocus_tbCertificationEndDate")).Element;
             }
         }
         #endregion

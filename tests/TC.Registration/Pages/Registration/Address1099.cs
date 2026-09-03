@@ -38,14 +38,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement Name
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txt1099FormName"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txt1099FormName")).Element;
             }
         }
 
@@ -53,70 +53,70 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtAddress1"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtAddress2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtCity"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtCity")).Element;
             }
         }
         public IWebElement ZipCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_nbZipFirst5"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement ZipCodeExt
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_nbZipLast4"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_nbZipLast4")).Element;
             }
         }
         public IWebElement Phone1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneNo1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneNo1")).Element;
             }
         }
         public IWebElement Phone1Ext
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneExt1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneExt1")).Element;
             }
         }
         public IWebElement Phone2
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneNo2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneNo2")).Element;
             }
         }
         public IWebElement Phone2Ext
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneExt2"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtPhoneExt2")).Element;
             }
         }
         public IWebElement SameBillingLocation
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_prov_billing"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_prov_billing")).Element;
             }
         }
 
@@ -124,7 +124,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtEmail1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_txtEmail1")).Element;
             }
         }
 
@@ -132,7 +132,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_prov_Same"));
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_prov_Same")).Element;
             }
         }
 
@@ -155,13 +155,13 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
         public void SetState(string item)
         {
-            IWebElement PracticeTypeElement = PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_ddlState"), null);
+            IWebElement PracticeTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_ddlState")).Element;
             SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement);
             PracticeTypeElementDropDown.SelectByText(item);
         }
         public void SetCounty(string item)
         {
-            IWebElement PracticeTypeElement = WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_ddlCounty"));
+            IWebElement PracticeTypeElement = webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_ucAddress_ddlCounty")).Element;
             SelectElement PracticeTypeElementDropDown = new SelectElement(PracticeTypeElement);
             PracticeTypeElementDropDown.SelectByText(item);
         }
@@ -171,10 +171,10 @@ namespace TC.ProviderDataEntry.Pages.Registration
             switch (taxExmpt)
             {
                 case "Yes":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblTaxExempt_0"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblTaxExempt_0")).Element;
                     break;
                 case "No":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblTaxExempt_1"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblTaxExempt_1")).Element;
                     break;
             }
             return null;
@@ -185,10 +185,10 @@ namespace TC.ProviderDataEntry.Pages.Registration
             switch (w9Form)
             {
                 case "Yes":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rbFormW9_0"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rbFormW9_0")).Element;
                     break;
                 case "No":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rbFormW9_1"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rbFormW9_1")).Element;
                     break;
             }
             return null;
@@ -199,10 +199,10 @@ namespace TC.ProviderDataEntry.Pages.Registration
             switch (form147)
             {
                 case "Yes":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblForm147_0"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblForm147_0")).Element;
                     break;
                 case "No":
-                    return WebDriver.FindElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblForm147_1"));
+                    return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucForm1099Address_{RegID}_rblForm147_1")).Element;
                     break;
             }
             return null;

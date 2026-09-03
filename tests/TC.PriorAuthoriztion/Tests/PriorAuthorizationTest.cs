@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,30 @@ using TC.PriorAuthoriztion.Utilities;
 using TC.PriorAuthoriztion.Models;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using TC.PriorAuthoriztion.Pages;
+using TC.PriorAuthoriztion.Services;
+using BasePageHelper = SdetToolbox.Pages.PageHelper;
 
 namespace TC.PriorAuthoriztion.Tests
 {
     [TestFixture("TechAdmin")]
     public class PriorAuthorizationTest : BaseFeatureFixture
     {
+        private PriorAuthorizationService _priorAuthService;
+
         public PriorAuthorizationTest(string profile) : base(profile)
         {
+        }
 
+        [SetUp]
+        public new void BeforeEachTest()
+        {
+            _priorAuthService = new PriorAuthorizationService(TestWebDriver);
+        }
+
+        // Example of using injected APIGateway from base class
+        protected APIGatway GetAPIGateway()
+        {
+            return APIGateway;
         }
 
 
@@ -61,30 +77,30 @@ namespace TC.PriorAuthoriztion.Tests
             jsExecutor = (IJavaScriptExecutor)TestWebDriver;
             jsExecutor.ExecuteScript("arguments[0].click();", submitPriorAuthorizationPage.btnSubmit);
 
-            PageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
             Thread.Sleep(3000);
 
             //submitPriorAuthorizationPage.btnSubmit.Click();
 
-            PageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
 
-            IWebElement messagrWarning = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment"), null);
+            IWebElement messagrWarning = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment")).Element;
 
             if (messagrWarning.Displayed)
             {
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnWarningAcknowledgmentYes"), null).Click();
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnWarningAcknowledgmentYes")).Element.Click();
             }
 
-            PageHelper.WaitUntilElementNotVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementNotVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment"), TimeoutConfiguration.Element);
 
             jsExecutor = (IJavaScriptExecutor)TestWebDriver;
             jsExecutor.ExecuteScript("arguments[0].click();", submitPriorAuthorizationPage.btnSubmit);
 
-            messagrWarning = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment"), null);
+            messagrWarning = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlWarningAcknowledgment")).Element;
             if (messagrWarning.Displayed)
             {
                 jsExecutor = (IJavaScriptExecutor)TestWebDriver;
-                jsExecutor.ExecuteScript("arguments[0].click();", PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnWarningAcknowledgmentYes"), null));
+                jsExecutor.ExecuteScript("arguments[0].click();", TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnWarningAcknowledgmentYes")).Element);
             }
             Thread.Sleep(1000);
             OpenQA.Selenium.IWebElement elemtToClick = TestWebDriver.FindElement(By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_btnSubmit']"));
@@ -106,8 +122,8 @@ namespace TC.PriorAuthoriztion.Tests
             }
             else if (tXNFailure)
             {
-                string failureMessage = PageHelper.FindElement(TestWebDriver, By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_grdTXNResponse']/tbody/tr/td[2]"), null).Text;
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnCloseFailure"), null).Click();
+                string failureMessage = TestWebDriver.CreateSmartElement(By.XPath("//*[@id='ctl00_MainContent_uc1SubmitPriorAuthorization_grdTXNResponse']/tbody/tr/td[2]")).Element.Text;
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btnCloseFailure")).Element.Click();
                NUnit.Framework.Assert.Fail(failureMessage);
             }
         }
@@ -157,10 +173,10 @@ namespace TC.PriorAuthoriztion.Tests
 
             alert.Accept();
 
-            PageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblpriorautherror"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblpriorautherror"), TimeoutConfiguration.Element);
 
-            IWebElement messagrWarning = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblpriorautherror"), null);
+            IWebElement messagrWarning = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lblpriorautherror")).Element;
 
             if (messagrWarning.Displayed && messagrWarning.Text.Equals("PA request has been saved."))
             {
@@ -192,7 +208,7 @@ namespace TC.PriorAuthoriztion.Tests
             submitPriorAuthorizationPage.txtBirthDate.Set(dentalPA.DentalRecipientInformation.DateOfBirth);
             submitPriorAuthorizationPage.txtPatientTrckNum.Click();
 
-            IWebElement firstnameElement = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtfrstmi2"), null);
+            IWebElement firstnameElement = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtfrstmi2")).Element;
 
             string valuee = firstnameElement.GetAttribute("value");
 
@@ -201,7 +217,7 @@ namespace TC.PriorAuthoriztion.Tests
             while (!isLoaded)
             {
                 Thread.Sleep(2000);
-                firstnameElement = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtfrstmi2"), null);
+                firstnameElement = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtfrstmi2")).Element;
                 valuee = firstnameElement.GetAttribute("value");
                 isLoaded = !string.IsNullOrEmpty(valuee) ? true : false;
             }
@@ -251,7 +267,7 @@ namespace TC.PriorAuthoriztion.Tests
 
             string orderingProvExp = submitPriorAuthorizationPage.lblseporderproviderinfo.Text;
             if (orderingProvExp.Equals("+"))
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlseporderproviderinfo"), null).Click();
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlseporderproviderinfo")).Element.Click();
 
             submitPriorAuthorizationPage.txtorderingprovidernpi.Set(dentalPA.DentalOrderingProviderInformation.OrderingProviderNPI);
 
@@ -270,7 +286,7 @@ namespace TC.PriorAuthoriztion.Tests
             {
                 string diagnosisExp = submitPriorAuthorizationPage.DiagnosisExpanderSpan.Text;
                 if (diagnosisExp.Equals("+"))
-                    PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlsepDiagnosis"), null).Click();
+                    TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlsepDiagnosis")).Element.Click();
 
                 Thread.Sleep(2000);
 
@@ -281,9 +297,9 @@ namespace TC.PriorAuthoriztion.Tests
                 submitPriorAuthorizationPage.btnDiagnosisAdd.Click();
             }
 
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtLnDiagnosisCode"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtLnDiagnosisCode"), TimeoutConfiguration.Element);
             submitPriorAuthorizationPage.txtLnDiagnosisCode.Set(dentalPA.DentalDiagnosisInformation.DiagnosisCode);
-            PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription"), null).Click();
+            TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription")).Element.Click();
 
             Thread.Sleep(3000);
 
@@ -306,24 +322,24 @@ namespace TC.PriorAuthoriztion.Tests
 
             Thread.Sleep(3000);
 
-            IWebElement lblDentalProcMessage = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription"), null);
+            IWebElement lblDentalProcMessage = TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeDescription")).Element;
 
             if (lblDentalProcMessage.Displayed && lblDentalProcMessage.Text.Equals("Procedure code is invalid"))
             {
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lnkDentalSDProcCodeSearchLink"), null).Click();
-                PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlSubmitPriorAuthSearchProcPop"), TimeoutConfiguration.Element);
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_lnkDentalSDProcCodeSearchLink")).Element.Click();
+                BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlSubmitPriorAuthSearchProcPop"), TimeoutConfiguration.Element);
 
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtCode"), null).Set(dentalPA.DentalServiceDetails.ProcedureCode);
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_Button9"), null).Click();
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtCode")).Element.Set(dentalPA.DentalServiceDetails.ProcedureCode);
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_Button9")).Element.Click();
 
                 Thread.Sleep(5000);
 
-                IWebElement procedureCodeOutput = PageHelper.FindElement(TestWebDriver, By.XPath("//*[@id='procedureCodeOutput']/div"), null);
+                IWebElement procedureCodeOutput = TestWebDriver.CreateSmartElement(By.XPath("//*[@id='procedureCodeOutput']/div")).Element;
 
                 if (procedureCodeOutput.Displayed)
                 {
                     if (!procedureCodeOutput.Text.Equals("No data found."))
-                        PageHelper.FindElement(TestWebDriver, By.XPath("//*[@id='tableData']/tbody/tr[2]/td[1]/a"), null).Click();
+                        TestWebDriver.CreateSmartElement(By.XPath("//*[@id='tableData']/tbody/tr[2]/td[1]/a")).Element.Click();
                     else
                         NUnit.Framework.Assert.Fail("no procedure code data found with the given code.");
                 }
@@ -361,11 +377,11 @@ namespace TC.PriorAuthoriztion.Tests
 
             TestWebDriver.FindElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_Div17")).Click();
 
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("btnprovNoteSave"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("btnprovNoteSave"), TimeoutConfiguration.Element);
 
             submitPriorAuthorizationPage.btnprovNoteSave.Click();
 
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("btnprovNoteEdit"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("btnprovNoteEdit"), TimeoutConfiguration.Element);
 
             #endregion
 
@@ -374,7 +390,7 @@ namespace TC.PriorAuthoriztion.Tests
 
             string attachmentExp = submitPriorAuthorizationPage.AttachmentExpanderSpan.Text;
             if (attachmentExp.Equals("+"))
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlSepDentalAttachment"), null).Click();
+                TestWebDriver.CreateSmartElement(By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlSepDentalAttachment")).Element.Click();
 
             Thread.Sleep(2000);
 
@@ -391,45 +407,25 @@ namespace TC.PriorAuthoriztion.Tests
 
             submitPriorAuthorizationPage.btnAddDentalAttachment.Click();
 
-            PageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
 
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_gvDentalAttachment"), TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilElementIsVisible(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_gvDentalAttachment"), TimeoutConfiguration.Element);
 
-            PageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
+            BasePageHelper.WaitUntilDocumentIsReady(TestWebDriver, TimeoutConfiguration.Element);
 
             #endregion
         }
 
         private void DiagnosisPopupSearch(string diagnosisCode)
         {
-            IWebElement searchPopup = PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlDiagnosisSearch1"), null);
-
-            if (searchPopup.Displayed)
-            {
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_pnlDiagnosisSearch1"), null);
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_txtDiagnosisCodeSearch1"), null).Set(diagnosisCode);
-                PageHelper.FindElement(TestWebDriver, By.Id("ctl00_MainContent_uc1SubmitPriorAuthorization_btndiagnosiscodeSearch"), null).Click();
-
-                Thread.Sleep(5000);
-
-                IWebElement diagnosisOutput = PageHelper.FindElement(TestWebDriver, By.Id("DiagnosisOutput"), null);
-
-                if (diagnosisOutput.Displayed)
-                {
-                    if (!diagnosisOutput.Text.Equals("No Diagnosis Found."))
-                        PageHelper.FindElement(TestWebDriver, By.XPath("//*[@id='DiagnosisOutput']/table/tbody/tr[2]/td[1]/a"), null).Click();
-                    else
-                        NUnit.Framework.Assert.Fail("no diagnosis data found with the given code.");
-
-                }
-            }
+            _priorAuthService.DiagnosisPopupSearch(diagnosisCode);
         }
 
         public IWebElement SidebarMenu
         {
             get
             {
-                return PageHelper.FindElement(TestWebDriver, By.XPath("//button[contains(@class,'hamburger is-closed')]"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath("//button[contains(@class,'hamburger is-closed')]")).Element;
             }
         }
         public void NavigateToSelfService()
@@ -443,7 +439,7 @@ namespace TC.PriorAuthoriztion.Tests
         {
             get
             {
-                return PageHelper.FindElement(TestWebDriver, By.XPath($"//a[@title='Self Service']"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath($"//a[@title='Self Service']")).Element;
 
             }
         }

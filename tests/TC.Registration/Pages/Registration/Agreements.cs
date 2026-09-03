@@ -41,7 +41,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -49,182 +49,182 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA01"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA01")).Element;
             }
         }
         public IWebElement FullTermsAndConditions
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA02"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA02")).Element;
             }
         }
         public IWebElement MedicaidPrioviderProvisionCheck
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA03"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA03")).Element;
             }
         }
         public IWebElement Voluntarilysurrendered_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_rblConfirmQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_rblConfirmQuestion_0")).Element;
             }
         }
         public IWebElement Voluntarilysurrendered_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_rblConfirmQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_rblConfirmQuestion_1")).Element;
             }
         }
         public IWebElement Voluntarilysurrendered_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_txtResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl01_txtResponseComment")).Element;
             }
         }
         public IWebElement InVoluntarilySuspended_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_rblConfirmQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_rblConfirmQuestion_1")).Element;
             }
         }
         public IWebElement InVoluntarilySuspended_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_rblConfirmQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_rblConfirmQuestion_0")).Element;
             }
         }
         public IWebElement InVoluntarilySuspended_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_txtResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl02_txtResponseComment")).Element;
             }
         }
         public IWebElement Resignfromaninternship_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_rblConfirmQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_rblConfirmQuestion_1")).Element;
             }
         }
         public IWebElement Resignfromaninternship_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_rblConfirmQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_rblConfirmQuestion_0")).Element;
             }
         }
         public IWebElement Resignfromaninternship_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_txtResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl03_txtResponseComment")).Element;
             }
         }
         public IWebElement InsuranceCancelledOrSuspended_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_rblConfirmQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_rblConfirmQuestion_1")).Element;
             }
         }
         public IWebElement InsuranceCancelledOrSuspended_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_rblConfirmQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_rblConfirmQuestion_0")).Element;
             }
         }
         public IWebElement InsuranceCancelledOrSuspended_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_txtResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl04_txtResponseComment")).Element;
             }
         }
         public IWebElement InfoReportedToNPDB_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_rblConfirmQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_rblConfirmQuestion_1")).Element;
             }
         }
         public IWebElement InfoReportedToNPDB_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_rblConfirmQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_rblConfirmQuestion_0")).Element;
             }
         }
         public IWebElement InfoReportedToNPDB_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_txtResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptAgreementQuestions_ctl05_txtResponseComment")).Element;
             }
         }
         public IWebElement DirectOrIndirectOwnerShip_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement DirectOrIndirectOwnerShip_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_0")).Element;
             }
         }
         public IWebElement DirectOrIndirectOwnerShip_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_txtIndividualResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_txtIndividualResponseComment")).Element;
             }
         }
         public IWebElement ConvictedOfCriminalOffense_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement ConvictedOfCriminalOffense_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_0")).Element;
             }
         }
         public IWebElement ConvictedOfCriminalOffense_Comments
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_txtIndividualResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_txtIndividualResponseComment")).Element;
             }
         }
         public IWebElement ConvictedViolenceOfLaw_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement ConvictedViolenceOfLaw_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -232,7 +232,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -240,7 +240,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_1")).Element;
             }
         }
 
@@ -251,14 +251,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement IndividualProviderQuestions_1_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl01_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -266,14 +266,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement IndividualProviderQuestions_2_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl02_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -281,14 +281,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement IndividualProviderQuestions_3_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -296,14 +296,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_1")).Element;
             }
         }
         public IWebElement IndividualProviderQuestions_4_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl04_rblConfirmIndividualQuestion_0")).Element;
             }
         }
 
@@ -316,42 +316,42 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_txtIndividualResponseComment"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_rptIndividualQuestions_ctl03_txtIndividualResponseComment")).Element;
             }
         }
         public IWebElement ProviderAgreementAttestation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA07"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_chkPA07")).Element;
             }
         }
         public IWebElement NameOfPerson
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_txtAttester"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_txtAttester")).Element;
             }
         }
         public IWebElement Password
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_txtPassword"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_txtPassword")).Element;
             }
         }
         public IWebElement SaveButton
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucAgreements_{RegID}_btnSaveSignature"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucAgreements_{RegID}_btnSaveSignature")).Element;
             }
         }
         public IWebElement ReviewModelPopup
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_pnlModal"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_pnlModal")).Element;
             }
         }
 
@@ -359,7 +359,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_btnModalOk"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_btnModalOk")).Element;
             }
         }
 

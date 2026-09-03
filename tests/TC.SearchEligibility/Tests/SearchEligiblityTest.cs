@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -103,7 +104,7 @@ namespace TC.MemberEligibilitySearch.Tests
         {
             get
             {
-                return PageHelper.FindElement(TestWebDriver, By.XPath("//button[contains(@class,'hamburger is-closed')]"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath("//button[contains(@class,'hamburger is-closed')]")).Element;
             }
         }
         public void NavigateToSelfService()
@@ -117,7 +118,7 @@ namespace TC.MemberEligibilitySearch.Tests
         {
             get
             {
-                return PageHelper.FindElement(TestWebDriver, By.XPath($"//a[@title='Self Service']"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath($"//a[@title='Self Service']")).Element;
 
             }
         }

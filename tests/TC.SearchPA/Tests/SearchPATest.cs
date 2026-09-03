@@ -33,11 +33,10 @@ namespace TC.PriorAuthSearch.Tests
         public string? MethodName { get; set; }
 
         private Screeshots? _screenshots;
-        private APIGatway _apiGateway;
 
         public SearchPATest(string profile) : base(profile)
         {
-            _apiGateway = new APIGatway();
+            // APIGateway is now injected via BaseFeatureFixture
         }
 
         [Test]
@@ -59,26 +58,26 @@ namespace TC.PriorAuthSearch.Tests
             testCaseExecutionLog.TestCaseId = "TCSearchPA";
             testCaseExecutionLog.TestCaseDescription = "Navigate to Search PA Page";
 
-            SaveLog(testCaseExecutionLog);
+            //SaveLog(testCaseExecutionLog);
 
-            _screenshots = new Screeshots
-            {
-                AssignmentTestCaseId = AssignmentTestCaseId,
-                screenShot = new List<byte[]>()
-            };
+            //_screenshots = new Screeshots
+            //{
+            //    AssignmentTestCaseId = AssignmentTestCaseId,
+            //    screenShot = new List<byte[]>()
+            //};
 
 
-            _screenshots.screenShot = new List<byte[]>();
-            _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "LoginCompletedSuccessfully"));
+            //_screenshots.screenShot = new List<byte[]>();
+            //_screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "LoginCompletedSuccessfully"));
 
             SidebarMenu.Click();
             Thread.Sleep(4000);
 
-            _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "Navingating to SelfService"));
+            //_screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "Navingating to SelfService"));
 
             testCaseExecutionLog.LogMessage = "Navigating to self service...!";
             testCaseExecutionLog.StepName = "Self Service";
-            SaveLog(testCaseExecutionLog);
+            //SaveLog(testCaseExecutionLog);
 
             NavigateToSelfService();
 
@@ -88,9 +87,9 @@ namespace TC.PriorAuthSearch.Tests
 
             testCaseExecutionLog.LogMessage = "Entered 2422659 for search";
             testCaseExecutionLog.StepName = "Medicaid Search";
-            SaveLog(testCaseExecutionLog);
+            //SaveLog(testCaseExecutionLog);
 
-            _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "MedicaidEntered"));
+            //  _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "MedicaidEntered"));
 
             financialProviderInformationPage.lnkBtnPriorAuth.Click();
 
@@ -100,17 +99,17 @@ namespace TC.PriorAuthSearch.Tests
 
             testCaseExecutionLog.LogMessage = "SearchButton Clicked";
             testCaseExecutionLog.StepName = "PA Search";
-            SaveLog(testCaseExecutionLog);
+            // SaveLog(testCaseExecutionLog);
 
-            _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "SearchButton Clicked"));
+            // _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "SearchButton Clicked"));
 
             SearchPAPage.WaitUntilElementIsVisible();
 
-            _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "Success"));
+            // _screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "Success"));
 
             testCaseExecutionLog.LogMessage = "Success";
             testCaseExecutionLog.StepName = "Test case executed successfully...!";
-            SaveLog(testCaseExecutionLog);
+            // SaveLog(testCaseExecutionLog);
         }
 
 
@@ -119,7 +118,7 @@ namespace TC.PriorAuthSearch.Tests
         {
             get
             {
-                return SdetToolbox.Pages.PageHelper.FindElement(TestWebDriver, By.XPath("//button[contains(@class,'hamburger is-closed')]"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath("//button[contains(@class,'hamburger is-closed')]")).Element;
             }
         }
         public void NavigateToSelfService()
@@ -133,7 +132,7 @@ namespace TC.PriorAuthSearch.Tests
         {
             get
             {
-                return PageHelper.FindElement(TestWebDriver, By.XPath($"//a[normalize-space()='Self Service']"), null);
+                return TestWebDriver.CreateSmartElement(By.XPath($"//a[normalize-space()='Self Service']")).Element;
 
             }
         }
@@ -158,12 +157,12 @@ namespace TC.PriorAuthSearch.Tests
                 })
                 .ToList();
 
-            _apiGateway.SaveMethodScreenShots(screenshots);
+            APIGateway.SaveMethodScreenShots(screenshots);
         }
 
         public void SaveLog(TestCaseExecutionLog testCaseExecutionLog)
         {
-            _apiGateway.SaveTestCaseLog(testCaseExecutionLog);
+            APIGateway.SaveTestCaseLog(testCaseExecutionLog);
         }
     }
 

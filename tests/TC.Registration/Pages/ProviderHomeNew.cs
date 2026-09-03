@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +37,7 @@ namespace TC.ProviderDataEntry.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_gvMyProviders_ctl00_ctl02_ctl02_FilterTextBox_TemplateColumn"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_gvMyProviders_ctl00_ctl02_ctl02_FilterTextBox_TemplateColumn")).Element;
             }
         }
 
@@ -44,7 +45,7 @@ namespace TC.ProviderDataEntry.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_gvMyProviders_ctl00_ctl02_ctl02_Filter_TemplateColumn"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_gvMyProviders_ctl00_ctl02_ctl02_Filter_TemplateColumn")).Element;
             }
         }
 
@@ -52,7 +53,7 @@ namespace TC.ProviderDataEntry.Pages
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath("//*[@id='ctl00_MainContent_gvMyProviders_rfltMenu_detached']/ul/li[6]/a/span"), null);
+                return webDriver.CreateSmartElement(By.XPath("//*[@id='ctl00_MainContent_gvMyProviders_rfltMenu_detached']/ul/li[6]/a/span")).Element;
             }
         }
     }

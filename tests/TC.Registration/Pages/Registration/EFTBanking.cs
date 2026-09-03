@@ -39,7 +39,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -47,168 +47,168 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_rblINTEND_TO_RECEIVE_MCC_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_rblINTEND_TO_RECEIVE_MCC_0")).Element;
             }
         }
         public IWebElement SupplementalPoolPayments_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_rblINTEND_TO_RECEIVE_MCC_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_rblINTEND_TO_RECEIVE_MCC_1")).Element;
             }
         }
         public IWebElement BankIsOutsideOfUnitedStates
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_chkBankInUS"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_chkBankInUS")).Element;
             }
         }
         public IWebElement AddBankingInformation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnAddBankingInfo"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnAddBankingInfo")).Element;
             }
         }
         public IWebElement FinancialInstitutionName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_txtBankName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_txtBankName")).Element;
             }
         }
         public IWebElement FinancialInstitutionRoutingNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbABANumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbABANumber")).Element;
             }
         }
         public IWebElement ConfirmFinancialInstitutionRoutingNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbConfirmABANumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbConfirmABANumber")).Element;
             }
         }
         public IWebElement AccountNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbAccountNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbAccountNumber")).Element;
             }
         }
         public IWebElement ConfirmAccountNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbConfirmAccountNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_nbConfirmAccountNumber")).Element;
             }
         }
         public IWebElement CheckingType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_rblCheckingSavings_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_rblCheckingSavings_0")).Element;
             }
         }
         public IWebElement SavingType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_rblCheckingSavings_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucBankingInfo_rblCheckingSavings_1")).Element;
             }
         }
         public IWebElement BankingInformation_Save
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnSave"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnSave")).Element;
             }
         }
         public IWebElement BankingInformation_Cancel
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnCancel"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnCancel")).Element;
             }
         }
         public IWebElement AddEFTContact
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnAddEftContact"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnAddEftContact")).Element;
             }
         }
         public IWebElement ProviderContactFirstName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactFirstName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactFirstName")).Element;
             }
         }
         public IWebElement MiddleName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactMiddleName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactMiddleName")).Element;
             }
         }
         public IWebElement LastName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactLastName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEFTContactLastName")).Element;
             }
         }
         public IWebElement PhoneNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtPhoneNo"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtPhoneNo")).Element;
             }
         }
         public IWebElement Extension
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtPhoneExt"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtPhoneExt")).Element;
             }
         }
         public IWebElement EmailAddress
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEmail"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtEmail")).Element;
             }
         }
         public IWebElement FaxNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtFaxNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_ucEftContact_txtFaxNumber")).Element;
             }
         }
         public IWebElement EFTInformation_Save
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnSave"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnSave")).Element;
             }
         }
         public IWebElement EFTInformation_Cancel
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnCancel"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_btnCancel")).Element;
             }
         }
         public IWebElement ConfirmInformation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_chkConfirm"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucACHAuthorization_{RegID}_chkConfirm")).Element;
             }
         }
         #endregion

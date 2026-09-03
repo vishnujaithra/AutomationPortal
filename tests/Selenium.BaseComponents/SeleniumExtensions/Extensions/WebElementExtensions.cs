@@ -1,29 +1,77 @@
 ﻿using OpenQA.Selenium;
-using static SeleniumExtras.WaitHelpers.ExpectedConditions;
 using OpenQA.Selenium.Support.UI;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
 using Selenium.BaseComponents.Utilities;
-using System.Threading;
-using System.Linq.Expressions;
-using Selenium.BaseComponents.Pages;
 using SeleniumExtensions.Configurations;
+using System.Collections.ObjectModel;
+using static SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace SeleniumExtensions.Extensions
 {
     public static class WebElementExtensions
     {
+        /// <summary>
+        /// Safely performs an action on an element with automatic stale element retry logic
+        /// </summary>
+        public static T SafeExecute<T>(this IWebElement element, Func<IWebElement, T> action, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    return action(element);
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500); // Brief pause before retry
+                }
+            }
+            throw new StaleElementReferenceException("Element is stale after maximum retries");
+        }
+
+        /// <summary>
+        /// Safely performs an action on an element with automatic stale element retry logic
+        /// </summary>
+        public static void SafeExecute(this IWebElement element, Action<IWebElement> action, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    action(element);
+                    return;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500); // Brief pause before retry
+                }
+            }
+            throw new StaleElementReferenceException("Element is stale after maximum retries");
+        }
+
         public static IWebElement SelectByIndex(this IWebElement webElement, int index)
         {
-            new SelectElement(webElement).SelectByIndex(index);
-            return webElement;
+            return webElement.SafeExecute(element => 
+            {
+                new SelectElement(element).SelectByIndex(index);
+                return element;
+            });
         }
 
         public static IWebElement SelectByText(this IWebElement webElement, string text)
         {
-            new SelectElement(webElement).SelectByText(text);
-            return webElement;
+            return webElement.SafeExecute(element => 
+            {
+                new SelectElement(element).SelectByText(text);
+                return element;
+            });
         }
         public static IWebElement SelectedOption(this IWebElement webElement)
         {
@@ -354,34 +402,88 @@ namespace SeleniumExtensions.Extensions
 
         public static void Set(this IWebElement element, string text, bool isWaitRequired = false)
         {
-            WaitForElementVisible(element, TimeoutConfiguration.Element);
-            element.Clear();
-            element.SendKeys(text);
-            if (isWaitRequired)
+            element.SafeExecute(elem => 
             {
-                Thread.Sleep(1000);
-            }
+                WaitForElementVisible(elem, TimeoutConfiguration.Element);
+                elem.Clear();
+                elem.SendKeys(text);
+                if (isWaitRequired)
+                {
+                    Thread.Sleep(1000);
+                }
+            });
         }
 
         public static void Set(this IWebElement element, bool state)
         {
-            WaitForElementVisible(element, TimeoutConfiguration.Element);
-            if (state)
+            element.SafeExecute(elem => 
             {
-                if (!element.Selected)
+                WaitForElementVisible(elem, TimeoutConfiguration.Element);
+                if (state)
                 {
-                    element.Click();
+                    if (!elem.Selected)
+                    {
+                        elem.Click();
+                    }
                 }
-            }
-            else if (element.Selected)
-            {
-                element.Click();
-            }
+                else if (elem.Selected)
+                {
+                    elem.Click();
+                }
+            });
         }
 
         public static SelectElement Select(this IWebElement element)
         {
-            return new SelectElement(element);
+            return element.SafeExecute(elem => new SelectElement(elem));
+        }
+
+        /// <summary>
+        /// Stale-safe click method
+        /// </summary>
+        public static void SafeClick(this IWebElement element)
+        {
+            element.SafeExecute(elem => elem.Click());
+        }
+
+        /// <summary>
+        /// Stale-safe text retrieval
+        /// </summary>
+        public static string SafeText(this IWebElement element)
+        {
+            return element.SafeExecute(elem => elem.Text);
+        }
+
+        /// <summary>
+        /// Stale-safe attribute retrieval
+        /// </summary>
+        public static string SafeGetAttribute(this IWebElement element, string attributeName)
+        {
+            return element.SafeExecute(elem => elem.GetAttribute(attributeName));
+        }
+
+        /// <summary>
+        /// Stale-safe displayed check
+        /// </summary>
+        public static bool SafeDisplayed(this IWebElement element)
+        {
+            return element.SafeExecute(elem => elem.Displayed);
+        }
+
+        /// <summary>
+        /// Stale-safe enabled check
+        /// </summary>
+        public static bool SafeEnabled(this IWebElement element)
+        {
+            return element.SafeExecute(elem => elem.Enabled);
+        }
+
+        /// <summary>
+        /// Stale-safe selected check
+        /// </summary>
+        public static bool SafeSelected(this IWebElement element)
+        {
+            return element.SafeExecute(elem => elem.Selected);
         }
     }
 }

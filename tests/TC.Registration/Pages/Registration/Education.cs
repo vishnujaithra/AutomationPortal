@@ -35,7 +35,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -43,112 +43,112 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_btnAddEducationItem"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_btnAddEducationItem")).Element;
             }
         }
         public IWebElement EducationType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlEducationType"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlEducationType")).Element;
             }
         }
         public IWebElement NameOfSchool
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbSchool"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbSchool")).Element;
             }
         }
         public IWebElement StartDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbStartYear"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbStartYear")).Element;
             }
         }
         public IWebElement EndDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbEndYear"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbEndYear")).Element;
             }
         }
         public IWebElement CertificateAwarded
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlDegreeAward"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlDegreeAward")).Element;
             }
         }
         public IWebElement Speciality
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlSpeciality"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlSpeciality")).Element;
             }
         }
         public IWebElement Address1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAddress1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAddress2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbCity"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbCity")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlState")).Element;
             }
         }
         public IWebElement Country
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlCountry"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_ddlCountry")).Element;
             }
         }
         public IWebElement ZipCode
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbZipCode"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbZipCode")).Element;
             }
         }
         public IWebElement PhoneNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbPhone"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbPhone")).Element;
             }
         }
         public IWebElement Fax
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbFax"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbFax")).Element;
             }
         }
         public IWebElement AdditionalInformation
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAdditional"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucEducation_{RegID}_tbAdditional")).Element;
             }
         }
         #endregion

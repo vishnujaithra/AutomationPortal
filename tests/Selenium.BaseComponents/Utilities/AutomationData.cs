@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Selenium.BaseComponents.Utilities
+﻿namespace Selenium.BaseComponents.Utilities
 {
     public class AutomationData
     {

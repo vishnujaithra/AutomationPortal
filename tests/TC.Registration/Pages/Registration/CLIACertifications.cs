@@ -35,49 +35,49 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return Selenium.BaseComponents.Utilities.PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddCLIACertification
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_btnAddCertSecondGrid"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_btnAddCertSecondGrid")).Element;
             }
         }
         public IWebElement CLIANumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_Number"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_Number")).Element;
             }
         }
         public IWebElement CLIACertificationType
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_ddlCliaCertType"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_ddlCliaCertType")).Element;
             }
         }
         public IWebElement CLIAEffectiveDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_Start"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_Start")).Element;
             }
         }
         public IWebElement CLIAExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_End"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucCLIACertification_{RegID}_prov_End")).Element;
             }
         }
         public IWebElement SaveButton
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_btnSave"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_btnSave")).Element;
             }
         }
         #endregion

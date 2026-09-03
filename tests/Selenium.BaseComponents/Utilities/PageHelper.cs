@@ -1,20 +1,12 @@
- 
+
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
-using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
 using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Windows.Automation;
+
 
 namespace Selenium.BaseComponents.Utilities
 {
@@ -297,6 +289,289 @@ namespace Selenium.BaseComponents.Utilities
             return webDriver.FindElement(locator);
         }
 
+        /// <summary>
+        /// Stale-safe element finding with automatic retry
+        /// </summary>
+        public static IWebElement FindElementStaleSafe(this IWebDriver webDriver, By locator, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    return webDriver.FindElement(locator);
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+                catch (NoSuchElementException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+            }
+            throw new NoSuchElementException($"Element not found after {maxRetries} retries: {locator}");
+        }
+
+        /// <summary>
+        /// Stale-safe element finding in container with automatic retry
+        /// </summary>
+        public static IWebElement FindElementStaleSafe(this IWebElement container, By locator, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    return container.FindElement(locator);
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+                catch (NoSuchElementException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+            }
+            throw new NoSuchElementException($"Element not found in container after {maxRetries} retries: {locator}");
+        }
+
+        /// <summary>
+        /// Stale-safe click using locator with automatic element refresh
+        /// </summary>
+        public static void ClickStaleSafe(this IWebDriver webDriver, By locator, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    IWebElement element = webDriver.FindElement(locator);
+                    element.Click();
+                    return;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+                catch (NoSuchElementException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+            }
+            throw new NoSuchElementException($"Cannot click element after {maxRetries} retries: {locator}");
+        }
+
+        /// <summary>
+        /// Stale-safe text retrieval using locator with automatic element refresh
+        /// </summary>
+        public static string GetTextStaleSafe(this IWebDriver webDriver, By locator, int maxRetries = 3)
+        {
+            int retryCount = 0;
+            while (retryCount < maxRetries)
+            {
+                try
+                {
+                    IWebElement element = webDriver.FindElement(locator);
+                    return element.Text;
+                }
+                catch (StaleElementReferenceException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+                catch (NoSuchElementException)
+                {
+                    retryCount++;
+                    if (retryCount >= maxRetries)
+                        throw;
+                    Thread.Sleep(500);
+                }
+            }
+            throw new NoSuchElementException($"Cannot get text after {maxRetries} retries: {locator}");
+        }
+
+        /// <summary>
+        /// Smart wait that replaces Thread.Sleep with intelligent condition checking
+        /// Usage: SmartWait(webDriver, 3000, () => element.Displayed);
+        /// </summary>
+        public static void SmartWait(this IWebDriver webDriver, int timeoutMs, Func<bool> condition = null, int checkInterval = 100)
+        {
+            if (condition == null)
+            {
+                // If no condition provided, just wait (similar to Thread.Sleep but more efficient)
+                Thread.Sleep(timeoutMs);
+                return;
+            }
+
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            while (stopwatch.ElapsedMilliseconds < timeoutMs)
+            {
+                try
+                {
+                    if (condition())
+                        return;
+                }
+                catch
+                {
+                    // Ignore exceptions during condition check
+                }
+                Thread.Sleep(checkInterval);
+            }
+        }
+
+        /// <summary>
+        /// Smart wait for element to be visible (replaces Thread.Sleep before element interaction)
+        /// Usage: SmartWaitForVisible(webDriver, By.Id("myElement"), 5000);
+        /// </summary>
+        public static void SmartWaitForVisible(this IWebDriver webDriver, By locator, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    return webDriver.FindElement(locator).Displayed;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for element to be clickable (replaces Thread.Sleep before click)
+        /// Usage: SmartWaitForClickable(webDriver, By.Id("myButton"), 5000);
+        /// </summary>
+        public static void SmartWaitForClickable(this IWebDriver webDriver, By locator, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    var element = webDriver.FindElement(locator);
+                    return element.Displayed && element.Enabled;
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for element to contain text (replaces Thread.Sleep after text entry)
+        /// Usage: SmartWaitForText(webDriver, By.Id("myElement"), "expected text", 5000);
+        /// </summary>
+        public static void SmartWaitForText(this IWebDriver webDriver, By locator, string expectedText, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    return webDriver.FindElement(locator).Text.Contains(expectedText);
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for element to be invisible (replaces Thread.Sleep after closing/disappearing elements)
+        /// Usage: SmartWaitForInvisible(webDriver, By.Id("loadingSpinner"), 5000);
+        /// </summary>
+        public static void SmartWaitForInvisible(this IWebDriver webDriver, By locator, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    return !webDriver.FindElement(locator).Displayed;
+                }
+                catch (NoSuchElementException)
+                {
+                    return true; // Element not found means it's invisible
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for AJAX completion (replaces Thread.Sleep after dynamic content updates)
+        /// Usage: SmartWaitForAjax(webDriver, 5000);
+        /// </summary>
+        public static void SmartWaitForAjax(this IWebDriver webDriver, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    var js = (IJavaScriptExecutor)webDriver;
+                    return (bool)js.ExecuteScript("return jQuery.active == 0");
+                }
+                catch
+                {
+                    // If jQuery is not available, assume AJAX is complete
+                    return true;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for page load (replaces Thread.Sleep after navigation)
+        /// Usage: SmartWaitForPageLoad(webDriver, 5000);
+        /// </summary>
+        public static void SmartWaitForPageLoad(this IWebDriver webDriver, int timeoutMs = 5000)
+        {
+            SmartWait(webDriver, timeoutMs, () =>
+            {
+                try
+                {
+                    var js = (IJavaScriptExecutor)webDriver;
+                    return js.ExecuteScript("return document.readyState").ToString() == "complete";
+                }
+                catch
+                {
+                    return false;
+                }
+            });
+        }
+
+        /// <summary>
+        /// Smart wait for custom condition (replaces complex Thread.Sleep scenarios)
+        /// Usage: SmartWaitUntil(webDriver, 5000, () => webDriver.FindElements(By.ClassName("item")).Count > 5);
+        /// </summary>
+        public static void SmartWaitUntil(this IWebDriver webDriver, int timeoutMs, Func<bool> condition)
+        {
+            SmartWait(webDriver, timeoutMs, condition);
+        }
+
         public static IWebElement WaitUntilElementIsClickableAndReturn(this IWebDriver webDriver, By locator, TimeSpan timeout)
         {
             WebDriverWait wait = new WebDriverWait(webDriver, timeout);
@@ -495,36 +770,9 @@ namespace Selenium.BaseComponents.Utilities
             //{
             //    browserName = Capabilities.GetCapability(“browserName”).ToString();
             //}
-            string browserTitle = _webDriver.Title;
-            //if (browserType.ToLower() == "firefox")
-            //    browserTitle += " - Mozilla Firefox";
-
-            AutomationElement browserWindow = null;
-            browserWindow = AutomationElement.RootElement.FindFirst(TreeScope.Children,
-                new PropertyCondition(AutomationElement.NameProperty, browserTitle));
-
-            AutomationElement saveFileDialog = null;
-            int timeout = 10;
-            while (saveFileDialog == null)
-            {
-                if (timeout == 0)
-                    break;
-
-                saveFileDialog = browserWindow.FindFirst(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Window));
-                System.Threading.Thread.Sleep(1000);
-                timeout--;
-            }
-
-            AutomationElement radioButton_SaveFile = saveFileDialog.FindFirst(TreeScope.Descendants, new AndCondition(new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.RadioButton),
-                new PropertyCondition(AutomationElement.NameProperty, "Save File")));
-            SelectionItemPattern selectItemPattern = (SelectionItemPattern)radioButton_SaveFile.GetCurrentPattern((AutomationPattern)SelectionItemPattern.Pattern);
-            selectItemPattern.Select();
-
-            AutomationElement buttonOk = saveFileDialog.FindFirst(TreeScope.Children, new AndCondition(new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Button),
-                new PropertyCondition(AutomationElement.NameProperty, "OK")));
-            InvokePattern clickButtonPattern = (InvokePattern)buttonOk.GetCurrentPattern((AutomationPattern)InvokePattern.Pattern);
-            saveFileDialog.SetFocus();
-            clickButtonPattern.Invoke();
+            // Wait for the download to complete
+            // Note: Windows UI Automation APIs (AutomationElement, etc.) are not available in .NET 8.
+            // The browser should be configured to auto-download files without a dialog.
             System.Threading.Thread.Sleep(5000);
 
             return _webDriver.GetRecentlyDownloadedFile(fileExtension);

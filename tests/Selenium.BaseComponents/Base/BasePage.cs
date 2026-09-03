@@ -1,8 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SdetToolbox.Pages;
-using System;
-using System.Drawing.Imaging;
 using SeleniumExtensions.Configurations;
 using SeleniumExtensions.Extensions;
 

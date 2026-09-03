@@ -1,8 +1,0 @@
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\bin\Debug\net8.0\.msCoverageSourceRootsMapping_TC.Registration
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\bin\Debug\net8.0\CoverletSourceRootsMapping_TC.Registration
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.csproj.AssemblyReference.cache
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.GeneratedMSBuildEditorConfig.editorconfig
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.AssemblyInfoInputs.cache
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.AssemblyInfo.cs
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.csproj.CoreCompileInputs.cache
-C:\source\Projects\mes-automation\tests\OhpnmAutomation\obj\Debug\net8.0\TC.Registration.sourcelink.json

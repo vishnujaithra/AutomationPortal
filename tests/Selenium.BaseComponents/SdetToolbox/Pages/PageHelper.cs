@@ -1,15 +1,10 @@
-﻿ 
+﻿
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using FluentAssertions;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Globalization;
-using System.IO;
-using System.Threading;
 
 namespace SdetToolbox.Pages
 {

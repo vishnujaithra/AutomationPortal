@@ -39,7 +39,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//*[@id='ctl00_pnlPageHeader']/div/h1"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//*[@id='ctl00_pnlPageHeader']/div/h1")).Element;
             }
         }
 
@@ -47,7 +47,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"menu"), null);
+                return webDriver.CreateSmartElement(By.Id($"menu")).Element;
             }
         }
 
@@ -55,7 +55,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.XPath($"//a[@title='Provider Search']"), null);
+                return webDriver.CreateSmartElement(By.XPath($"//a[@title='Provider Search']")).Element;
             }
         }
 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TC.MemberEligibilitySearch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34fb1da6f412efa60c4e82278053aeb847ba01bc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("TC.MemberEligibilitySearch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TC.MemberEligibilitySearch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

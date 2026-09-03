@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using SdetToolbox.Pages;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_btnReturn"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_btnReturn")).Element;
             }
         }
 

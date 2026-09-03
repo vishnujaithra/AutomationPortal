@@ -40,7 +40,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
 
@@ -48,21 +48,21 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucUploadDocument_filUploadFile"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucUploadDocument_filUploadFile")).Element;
             }
         }
         public IWebElement FileName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucUploadDocument_txtName"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucUploadDocument_txtName")).Element;
             }
         }
         public IWebElement FileDescription
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucUploadDocument_txtDescription"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucUploadDocument_txtDescription")).Element;
             }
         }
 
@@ -70,14 +70,14 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucUploadDocument_UploadButton"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucUploadDocument_UploadButton")).Element;
             }
         }
         public IWebElement FileUploadTable
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id("ctl00_MainContent_ucUploadDocument_gvUploadedDocs"), null);
+                return webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucUploadDocument_gvUploadedDocs")).Element;
             }
         }
         #endregion

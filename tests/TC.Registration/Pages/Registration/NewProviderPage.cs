@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using Selenium.BaseComponents.Pages;
+using Selenium.BaseComponents.Utilities;
 using SeleniumExtensions.Configurations;
 using SeleniumExtensions.Extensions;
 using static SeleniumExtras.WaitHelpers.ExpectedConditions;
@@ -16,32 +17,34 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
         }
 
-        public IWebElement NewProviderBtn()
+        public SmartElement NewProviderBtn
         {
-            By locator = By.XPath("//button[@id='ctl00_MainContent_divNewProvider']");
-            ElementWait.Until(ElementExists(locator));
-            return WebDriver.FindElement(locator);
+            get
+            {
+                return WebDriver.CreateSmartElement(By.XPath("//button[@id='ctl00_MainContent_divNewProvider']"));
+            }
         }
 
-        public IWebElement StandardType()
+        public SmartElement StandardType
         {
-            By locator = By.XPath("//button[@id='ctl00_MainContent_rptApplication_ctl00_SelectAppType']");
-            ElementWait.Until(ElementExists(locator));
-            return WebDriver.FindElement(locator);
+            get
+            {
+                return WebDriver.CreateSmartElement(By.XPath("//button[@id='ctl00_MainContent_rptApplication_ctl00_SelectAppType']"));
+            }
         }
 
-        public IWebElement IndividualType()
+        public SmartElement IndividualType
         {
-            By locator = By.XPath("//button[@id='ctl00_MainContent_rptCategory_ctl00_btnCat']");
-            ElementWait.Until(ElementExists(locator));
-            return WebDriver.FindElement(locator);
+            get
+            {
+                return WebDriver.CreateSmartElement(By.XPath("//button[@id='ctl00_MainContent_rptCategory_ctl00_btnCat']"));
+            }
         }
 
         public bool isNewProviderloaded()
         {
-            By locator = By.XPath("//*[@id='ctl00_MainContent_div10DayMessage']");
-            ElementWait.Until(ElementExists(locator));
-            return PageHelper.IsElementExist(WebDriver, locator) ? true : false;
+            var element = WebDriver.CreateSmartElement(By.XPath("//*[@id='ctl00_MainContent_div10DayMessage']"));
+            return element.Element != null && element.Element.Displayed;
         }
 
         #region New provider Information
@@ -50,7 +53,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtFirstName"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtFirstName")).Element;
             }
         }
 
@@ -58,7 +61,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtMI"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtMI")).Element;
             }
         }
 
@@ -67,7 +70,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtLastName"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtLastName")).Element;
             }
         }
 
@@ -76,7 +79,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtTaxID"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtTaxID")).Element;
             }
         }
 
@@ -84,7 +87,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtNPI"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtNPI")).Element;
             }
         }
 
@@ -92,7 +95,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtBirthDate"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtBirthDate")).Element;
             }
         }
 
@@ -100,7 +103,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtZipCode"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtZipCode")).Element;
             }
         }
 
@@ -108,7 +111,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_txtZipCodeExt"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_txtZipCodeExt")).Element;
             }
         }
 
@@ -116,7 +119,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.XPath("//*[@id='ctl00_MainContent_ddlProviderType']"));
+                return WebDriver.CreateSmartElement(By.XPath("//*[@id='ctl00_MainContent_ddlProviderType']")).Element;
             }
         }
 
@@ -124,7 +127,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_ddlTaxonomyNPPES"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_ddlTaxonomyNPPES")).Element;
             }
         }
 
@@ -132,32 +135,23 @@ namespace TC.ProviderDataEntry.Pages.Registration
         {
             get
             {
-                return WebDriver.FindElement(By.Id("ctl00_MainContent_btnSave"));
+                return WebDriver.CreateSmartElement(By.Id("ctl00_MainContent_btnSave")).Element;
             }
         }
 
 
-        public IWebElement Gender(string gender)
+        public SmartElement Gender(string gender)
         {
-            switch (gender)
+            string xpath = gender switch
             {
-                case "Female":
-                    return WebDriver.FindElement(By.XPath("//*[@id=\"ctl00_MainContent_ddlGender\"]/option[2]"));
-                    break;
-                case "Male":
-                    return WebDriver.FindElement(By.XPath("//*[@id=\"ctl00_MainContent_ddlGender\"]/option[3]"));
-                    break;
-                case "unknown":
-                    return WebDriver.FindElement(By.XPath("//*[@id=\"ctl00_MainContent_ddlGender\"]/option[4]"));
-                    break;
-                case "Undisclosed":
-                    return WebDriver.FindElement(By.XPath("//*[@id=\"ctl00_MainContent_ddlGender\"]/option[5]"));
-                    break;
-                case "Unspecified":
-                    return WebDriver.FindElement(By.XPath("//*[@id=\"ctl00_MainContent_ddlGender\"]/option[2]"));
-                    break;
-            }
-            return null;
+                "Female" => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[2]",
+                "Male" => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[3]",
+                "unknown" => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[4]",
+                "Undisclosed" => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[5]",
+                "Unspecified" => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[2]",
+                _ => "//*[@id=\"ctl00_MainContent_ddlGender\"]/option[2]"
+            };
+            return WebDriver.CreateSmartElement(By.XPath(xpath));
         }
 
         public void WaitUntilTaxonomyVisible()
@@ -195,8 +189,6 @@ namespace TC.ProviderDataEntry.Pages.Registration
 
             SetProviderType(info.ProviderType);
 
-            Thread.Sleep(2000);
-
             if (!string.IsNullOrEmpty(info.FirstName))
                 Firstname.Set(info.FirstName, true);
 
@@ -212,8 +204,7 @@ namespace TC.ProviderDataEntry.Pages.Registration
             if (!string.IsNullOrEmpty(info.NPI))
                 NPI.Set(info.NPI, true);
 
-            Gender(info.Gender).Click();
-            Thread.Sleep(3000);
+            Gender(info.Gender).Element.Click();
 
             if (!string.IsNullOrEmpty(info.DateofBirth))
                 DateofBirth.Set(info.DateofBirth, true);

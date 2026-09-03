@@ -36,161 +36,161 @@ namespace TC.ProviderDataEntry.Pages.Registration
             get
             {
                 return PageHelper.IsElementExist(webDriver, By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) ?
-                    WebDriver.FindElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")) : null;
+                    webDriver.CreateSmartElement(By.Id("ctl00_MainContent_ucRegistrationNavigation_lblTitle")).Element : null;
             }
         }
         public IWebElement AddNewInsurance
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_btnAddWorkItem"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_btnAddWorkItem")).Element;
             }
         }
         public IWebElement MalPracticeInsurance_Yes
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_rblMalpracticeInsurace_0"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_rblMalpracticeInsurace_0")).Element;
             }
         }
         public IWebElement MalPracticeInsurance_No
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_rblMalpracticeInsurace_1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_rblMalpracticeInsurace_1")).Element;
             }
         }
         public IWebElement SelfInsured
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlSelfInsured"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlSelfInsured")).Element;
             }
         }
         public IWebElement PolicyNumber
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtPolicyNumber"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtPolicyNumber")).Element;
             }
         }
         public IWebElement EffectiveDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtEffectiveDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtEffectiveDate")).Element;
             }
         }
         public IWebElement OriginalEffectiveDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtOrginaEffDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtOrginaEffDate")).Element;
             }
         }
         public IWebElement ExpirationDate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtExpirationDate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtExpirationDate")).Element;
             }
         }
         public IWebElement TypeOfCoverage
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlTypeofCoverage"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlTypeofCoverage")).Element;
             }
         }
         public IWebElement UnlimitedCoverage
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlIsUnlimitedCoverage"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlIsUnlimitedCoverage")).Element;
             }
         }
         public IWebElement TailCoverage
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlIsPolicyTailCoverageInclude"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ddlIsPolicyTailCoverageInclude")).Element;
             }
         }
         public IWebElement CarrierName
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtCarrierName"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtCarrierName")).Element;
             }
         }
         public IWebElement Address1
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtAddress1"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtAddress1")).Element;
             }
         }
         public IWebElement Address2
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtAddress2"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtAddress2")).Element;
             }
         }
         public IWebElement City
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtCity"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_txtCity")).Element;
             }
         }
         public IWebElement State
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_ddlState"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_ddlState")).Element;
             }
         }
         public IWebElement County
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_ddlCounty"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_ddlCounty")).Element;
             }
         }
         public IWebElement Zip
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_nbZipFirst5"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_ucAddress_nbZipFirst5")).Element;
             }
         }
         public IWebElement PolicyHolder
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtPolicyHolder"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtPolicyHolder")).Element;
             }
         }
         public IWebElement AmountPerOccurence
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtAmtPerOccurrence"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtAmtPerOccurrence")).Element;
             }
         }
         public IWebElement AmountPerAggregate
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtAmtPerAggregate"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtAmtPerAggregate")).Element;
             }
         }
         public IWebElement MalpracticeReason
         {
             get
             {
-                return PageHelper.FindElement(webDriver, By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtMalpracticeReason"), null);
+                return webDriver.CreateSmartElement(By.Id($"ctl00_MainContent_ucInsurance_{RegID}_txtMalpracticeReason")).Element;
             }
         }
         #endregion

@@ -1,26 +1,15 @@
-﻿using NUnit.Framework;
+﻿using Microsoft.Extensions.DependencyInjection;
+using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
 using Selenium.BaseComponents.CommonPages;
-using Selenium.BaseComponents.Utilities;
-using System.IO;
-using System.Reflection;
+using Selenium.BaseComponents.CommonPages.Login;
+using Selenium.BaseComponents.Configuration;
 using Selenium.BaseComponents.Data;
-using SeleniumExtensions.Extensions;
-using NUnit.Framework.Internal;
-using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 //using OpenQA.Selenium.DevTools.V117.Page;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtensions.Configurations;
-using OpenQA.Selenium.Edge;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
+using Selenium.BaseComponents.Services;
+using Selenium.BaseComponents.Utilities;
+using SeleniumExtensions.Extensions;
 
 
 namespace Selenium.BaseComponents.Pages
@@ -28,99 +17,32 @@ namespace Selenium.BaseComponents.Pages
     //[Parallelizable]
     public abstract class BaseFeatureFixture : ILoginPage
     {
-        
+
 
         public IWebDriver TestWebDriver;
-        private IWebElement _userName;
-        private IWebElement _password;
-        private IWebElement _loginButton;
         private string Username;
         private string pswd;
         private string environment = Users.CurrentEnvironment;
 
+        // Service provider for dependency injection
+        protected IServiceProvider ServiceProvider;
+
+        // Service layer instances for better separation of concerns
+        protected WebDriverService WebDriverService;
+        protected LoginService LoginService;
+        protected APIGatway APIGateway;
+
+        // Page object for login page
+        protected LoginPage LoginPage;
+
 
         //  public TestContext TestContext { get; set; }
 
-
-        public IWebElement UserName
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.XPath("//input[@id='ctl00_MainContent_Login1_UserName']"));
-            }
-        }
-
-        public IWebElement Password
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.XPath("//input[@id='ctl00_MainContent_Login1_Password']"));
-            }
-
-        }
-
-
-        public IWebElement ChkLoginTerms
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.XPath("//input[@id='ctl00_MainContent_chkTerms']"));
-            }
-
-        }
-
-        public IWebElement NextButton
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.XPath("//input[@id='ctl00_MainContent_Login1_btnNext']"));
-            }
-
-        }
-
-        public IWebElement LogOutButton
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.Id("ctl00_LoginView2_lnkLogout"));
-            }
-
-        }
-
-        public IWebElement LoginButton
-        {
-            get
-            {
-                return TestWebDriver.FindElement(By.XPath("//input[@id='ctl00_MainContent_Login1_LoginButton']"));
-            }
-
-        }
         public string Url
         {
             get
             {
-                switch (environment)
-                {
-                    case Users.Environment.INT01P3:
-                        return "https://ohpnm-dev.omes.maximus.com/OH_PNM_INT01P3/Account/Login.aspx";
-                    case Users.Environment.INT01:
-                        return "https://ohpnm-dev.omes.maximus.com/OH_PNM_INT01/Account/Login.aspx";
-
-                    case Users.Environment.DEV01:
-                        return "https://ohpnm-dev.omes.maximus.com/OH_PNM_DEV/Account/Login.aspx";
-                    case Users.Environment.DEV01P3:
-                        return "https://ohpnm-dev.omes.maximus.com/OH_PNM_DEVP3/Account/Login.aspx";
-
-                    case Users.Environment.E2E:
-                        return "https://ohpnm-e2e.omes.maximus.com/OH_PNM_E2E/Account/Login.aspx";
-                    case Users.Environment.E2EP3:
-                        return "https://ohpnm-e2e.omes.maximus.com/OH_PNM_E2E/Account/Login.aspx";
-
-                    case Users.Environment.PROD:
-                        return "https://ohpnm.omes.maximus.com/OH_PNM_PROD/Account/Login.aspx";
-                    default:
-                        return "https://ohpnm-dev.omes.maximus.com/OH_PNM_DEV/Account/Login.aspx";
-                }
+                return LoginService.GetLoginUrl();
             }
         }
 
@@ -128,6 +50,7 @@ namespace Selenium.BaseComponents.Pages
         {
             Username = username;
             pswd = password;
+            InitializeServices();
         }
 
         public BaseFeatureFixture(string profile = null)
@@ -137,6 +60,16 @@ namespace Selenium.BaseComponents.Pages
                 Username = UserCredentials.UserNameGenerator.GetUserName(profile, environment);
                 pswd = UserCredentials.PasswordGenerator.GetPassword(environment);
             }
+            InitializeServices();
+        }
+
+        private void InitializeServices()
+        {
+            // Use Dependency Injection for service creation
+            ServiceProvider = ServiceConfig.CreateServiceProvider();
+            WebDriverService = ServiceProvider.GetRequiredService<WebDriverService>();
+            APIGateway = ServiceProvider.GetRequiredService<APIGatway>();
+            // LoginService will be initialized after WebDriver is created
         }
 
 
@@ -154,8 +87,7 @@ namespace Selenium.BaseComponents.Pages
 
             if (queueId != null)
             {
-                APIGatway aPIGatway = new APIGatway();
-                bool status = aPIGatway.UpdateQueue(queueId, "InProgress").Result;
+                bool status = APIGateway.UpdateQueue(queueId, "InProgress").Result;
             }
 
             InitializeChromeAndLogin();
@@ -163,51 +95,35 @@ namespace Selenium.BaseComponents.Pages
 
         private void InitializeChromeAndLogin()
         {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("--disable-notifications");
-            chromeOptions.AddArguments("start-maximized");
-            chromeOptions.AddArguments("--disable-extensions");
-            chromeOptions.AddArguments("no-sandbox");
-            chromeOptions.AddArguments("--ignore-certificate-errors");
-            //chromeOptions.AddArguments("--incognito");
-            // chromeOptions.AddArgument("--headless");
-            if (Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
-            {
-                chromeOptions.AddArgument("--headless");
-            }
-
-
-            TestWebDriver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), chromeOptions, TimeSpan.FromMinutes(5));
+            // Use WebDriverService for initialization
+            TestWebDriver = WebDriverService.CreateChromeDriver();
+            
+            // Create LoginService with WebDriver using DI
+            LoginService = new LoginService(TestWebDriver, environment);
+            
+            // Create LoginPage for element access
+            LoginPage = new LoginPage(TestWebDriver);
 
             if (Username != null)
             {
-                Login(Url, Username, pswd);//, WebOptions.LoginUrl
+                LoginService.Login(Url, Username, pswd);
             }
         }
 
         private void InitializeEdgeAndLogin()
         {
-            // Initialize EdgeOptions
-            EdgeOptions edgeOptions = new EdgeOptions();
-            edgeOptions.AddArgument("--disable-notifications");
-            edgeOptions.AddArgument("start-maximized");
-            edgeOptions.AddArgument("--disable-extensions");
-            edgeOptions.AddArgument("no-sandbox");
-            edgeOptions.AddArgument("--ignore-certificate-errors");
-            //edgeOptions.AddArgument("--headless");
-
-            // Conditional headless mode
-            if (Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
-            {
-                edgeOptions.AddArgument("--headless");
-            }
-
-            // Initialize EdgeDriver
-            TestWebDriver = new EdgeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), edgeOptions, TimeSpan.FromMinutes(5));
+            // Use WebDriverService for initialization
+            TestWebDriver = WebDriverService.CreateEdgeDriver();
+            
+            // Create LoginService with WebDriver using DI
+            LoginService = new LoginService(TestWebDriver, environment);
+            
+            // Create LoginPage for element access
+            LoginPage = new LoginPage(TestWebDriver);
 
             if (Username != null)
             {
-                Login(Url, Username, pswd);
+                LoginService.Login(Url, Username, pswd);
             }
         }
 
@@ -245,20 +161,9 @@ namespace Selenium.BaseComponents.Pages
  
             if (TestWebDriver != null)
             {
-                if (onCIEnv || fixturePassed || Selenium.BaseComponents.Utilities.PreBuildConstants.PREBUILD_ENV != "PREBUILD_ENV_VALUE")
-                {
-                    TestWebDriver.Close();
-                    TestWebDriver.Quit();
-                    TestWebDriver.Dispose();
-                    TestWebDriver = null;
-                }
-                else
-                {
-                    TestWebDriver.Close();
-                    TestWebDriver.Quit();
-                    TestWebDriver.Dispose();
-                    TestWebDriver = null;
-                }
+                // Use WebDriverService for proper disposal
+                WebDriverService.DisposeWebDriver(TestWebDriver);
+                TestWebDriver = null;
             }
 
         }
@@ -268,68 +173,36 @@ namespace Selenium.BaseComponents.Pages
         public void LoginByProfile(string profile)
         {
             var uname = UserCredentials.UserNameGenerator.GetUserName(profile, Users.CurrentEnvironment);
-            Login(uname, UserCredentials.PasswordGenerator.GetPassword(Users.CurrentEnvironment));
+            LoginService.Login(uname, UserCredentials.PasswordGenerator.GetPassword(Users.CurrentEnvironment));
         }
+
         public bool IsActive()
         {
-            return this.TestWebDriver.Url.Contains("ChangePassword");
+            return LoginService.IsActive();
         }
+
         #region Cancel Change Password
         public void ClickCancelButton()
         {
-            try
+            // Handled by LoginPage
+            if (LoginPage != null)
             {
-                Button_Cancel.Click();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-        }
-        private IWebElement button_Cancel;
-        public IWebElement Button_Cancel
-        {
-            get
-            {
-                if (button_Cancel == null)
-                    button_Cancel = TestWebDriver.FindElement(By.Id("cancel-button"), null);
-                return button_Cancel;
+                LoginPage.ClickCancelButton();
             }
         }
         #endregion
-
 
         public void Login(string loginUrl, string userName, string password)
         {
             try
             {
-                TestWebDriver.Navigate().GoToUrl(Url);
-                TestWebDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(Convert.ToInt32(5)));
-                UserName.Set(userName);
-                NextButton.Click();
-                Password.Set(password);
-                LoginButton.Click();
-                ChkLoginTerms.Click();
-
-                if (TestWebDriver.Url.Contains("EmailVerification"))
-                {
-                    Assert.Fail("Login requires two-factor authentication. " +
-                        "User Name: " + userName + "," +
-                        "Password: " + password + "." +
-                        "Please try running the test again.");
-                }
-                if (IsActive())
-                {
-                    ClickCancelButton();
-                }
+                LoginService.Login(loginUrl, userName, password);
             }
             catch (Exception ex)
             {
                 if (TestWebDriver != null)
                 {
-                    TestWebDriver.Close();
-                    TestWebDriver.Quit();
-                    TestWebDriver.Dispose();
+                    WebDriverService.DisposeWebDriver(TestWebDriver);
                     TestWebDriver = null;
                 }
                 InitializeChromeAndLogin();
@@ -338,47 +211,24 @@ namespace Selenium.BaseComponents.Pages
 
         public void Login(string userName, string password)
         {
-            TestWebDriver.Navigate().GoToUrl(Url);
-
-            TestWebDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(Convert.ToInt32(5)));
-            UserName.Set(userName);
-            NextButton.Click();
-
-            WebDriverWait wait = new WebDriverWait(TestWebDriver, TimeoutConfiguration.Element);
-
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//input[@id='ctl00_MainContent_Login1_Password']")));
-
-            Password.Set(password);
-            LoginButton.Click();
-
-            PageHelper.WaitUntilElementIsVisible(TestWebDriver, By.XPath("//input[@id='ctl00_MainContent_chkTerms']"), TimeoutConfiguration.Element);
-
-            ChkLoginTerms.Click();
-
-            if (TestWebDriver.Url.Contains("EmailVerification"))
-            {
-                Assert.Fail("Login requires two-factor authentication. " +
-                    "User Name: " + userName + "," +
-                    "Password: " + password + "." +
-                    "Please try running the test again.");
-            }
-            if (IsActive())
-            {
-                ClickCancelButton();
-            }
+            LoginService.Login(userName, password);
         }
+
         public void LoginEmc(string userName, string password)
         {
             //TestWebDriver.Navigate().GoToUrl(Url);
 
-            UserName.Set(userName);
-            Password.Set(password);
-            LoginButton.Click();
+            if (LoginPage != null)
+            {
+                LoginPage.UserName.Set(userName);
+                LoginPage.Password.Set(password);
+                LoginPage.LoginButton.Click();
+            }
         }
 
         public void LogOut()
         {
-            LogOutButton.Click();
+            LoginService.Logout();
         }
     }
 }
