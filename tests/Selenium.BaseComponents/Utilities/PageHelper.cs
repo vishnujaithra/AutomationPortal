@@ -705,6 +705,90 @@ namespace Selenium.BaseComponents.Utilities
             Thread.Sleep(TimeSpan.FromSeconds(2));
             ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", webElement);
         }
+
+        /// <summary>
+        /// Clicks an element with automatic scroll, retry, and JavaScript fallback for headless mode compatibility.
+        /// Use this instead of element.Click() when running in headless mode.
+        /// Handles: ElementNotInteractableException, StaleElementReferenceException, ElementClickInterceptedException
+        /// </summary>
+        /// <param name="webElement">The element to click.</param>
+        /// <param name="_webDriver">The WebDriver instance.</param>
+        /// <param name="maxRetries">Maximum number of retry attempts (default: 3)</param>
+        public static void ClickSafe(this IWebElement webElement, IWebDriver _webDriver, int maxRetries = 3)
+        {
+            Exception lastException = null;
+
+            for (int attempt = 0; attempt < maxRetries; attempt++)
+            {
+                try
+                {
+                    // Scroll element into center view first
+                    ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].scrollIntoView({block: 'center'});", webElement);
+                    Thread.Sleep(150); // Brief pause for scroll to complete
+                    webElement.Click();
+                    return; // Success
+                }
+                catch (StaleElementReferenceException ex)
+                {
+                    lastException = ex;
+                    Thread.Sleep(200);
+                    // Element is stale, retry will use the same reference which may fail
+                    // Caller should re-find the element if this keeps failing
+                }
+                catch (ElementClickInterceptedException ex)
+                {
+                    lastException = ex;
+                    // Element is covered by another element, try JS click
+                    try
+                    {
+                        ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].click();", webElement);
+                        return;
+                    }
+                    catch { }
+                    Thread.Sleep(300);
+                }
+                catch (ElementNotInteractableException ex)
+                {
+                    lastException = ex;
+                    // Fallback to JavaScript click
+                    try
+                    {
+                        ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].click();", webElement);
+                        return; // JS click succeeded
+                    }
+                    catch { }
+                }
+                catch (Exception ex)
+                {
+                    lastException = ex;
+                    Thread.Sleep(200);
+                }
+            }
+
+            // If all retries failed, throw the last exception
+            if (lastException != null)
+                throw lastException;
+        }
+
+        /// <summary>
+        /// Clicks an element using JavaScript directly. Use when normal click fails.
+        /// </summary>
+        public static void ClickByJS(this IWebElement webElement, IWebDriver _webDriver)
+        {
+            ((IJavaScriptExecutor)_webDriver).ExecuteScript("arguments[0].click();", webElement);
+        }
+
+        /// <summary>
+        /// Finds an element with wait and clicks it safely.
+        /// This is the most reliable way to click elements in headless mode.
+        /// </summary>
+        public static void FindAndClickSafe(this IWebDriver _webDriver, By locator, int timeoutSeconds = 10)
+        {
+            WaitUntilElementIsVisible(_webDriver, locator, TimeSpan.FromSeconds(timeoutSeconds));
+            var element = _webDriver.FindElement(locator);
+            element.ClickSafe(_webDriver);
+        }
+
         public static void ScrollDown(this IWebDriver _webDriver, string val = "1000")
         {
             //((IJavaScriptExecutor)_webDriver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");

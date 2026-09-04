@@ -70,7 +70,7 @@ namespace TC.PriorAuthSearch.Tests
             //_screenshots.screenShot = new List<byte[]>();
             //_screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "LoginCompletedSuccessfully"));
 
-            SidebarMenu.Click();
+            SidebarMenu.ClickSafe(TestWebDriver);
             Thread.Sleep(4000);
 
             //_screenshots.screenShot.Add(Common.PrintScreenShot(TestWebDriver, "Navingating to SelfService"));

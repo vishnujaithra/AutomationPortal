@@ -59,25 +59,38 @@ namespace Selenium.BaseComponents.Services
             try
             {
                 _webDriver.Navigate().GoToUrl(loginUrl);
-                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(5));
+                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(10));
 
                 // Step 1: Enter username and click Next
-                var userNameElement = _webDriver.CreateSmartElement(By.XPath("//input[@id='ctl00_MainContent_Login1_UserName']")).Element;
-                var nextButton = _webDriver.CreateSmartElement(By.XPath("//input[@id='ctl00_MainContent_Login1_btnNext']")).Element;
-
+                var userNameLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_UserName']");
+                var nextButtonLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_btnNext']");
+                
+                _webDriver.WaitUntilElementIsVisible(userNameLocator, TimeSpan.FromSeconds(10));
+                var userNameElement = _webDriver.FindElement(userNameLocator);
                 userNameElement.Set(userName);
-                nextButton.Click();
+                
+                var nextButton = _webDriver.FindElement(nextButtonLocator);
+                nextButton.ClickSafe(_webDriver);
 
                 // Step 2: Enter password and click Login (elements appear after Next click)
-                var passwordElement = _webDriver.CreateSmartElement(By.XPath("//input[@id='ctl00_MainContent_Login1_Password']")).Element;
-                var loginButton = _webDriver.CreateSmartElement(By.XPath("//input[@id='ctl00_MainContent_Login1_LoginButton']")).Element;
-
+                var passwordLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_Password']");
+                var loginButtonLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_LoginButton']");
+                
+                _webDriver.WaitUntilElementIsVisible(passwordLocator, TimeSpan.FromSeconds(10));
+                var passwordElement = _webDriver.FindElement(passwordLocator);
                 passwordElement.Set(password);
-                loginButton.Click();
+                
+                var loginButton = _webDriver.FindElement(loginButtonLocator);
+                loginButton.ClickSafe(_webDriver);
 
-                // Step 3: Accept terms (checkbox appears after login)
-                var chkTerms = _webDriver.CreateSmartElement(By.XPath("//input[@id='ctl00_MainContent_chkTerms']")).Element;
-                chkTerms.Click();
+                // Step 3: Accept terms (checkbox appears after login - wait for page to load)
+                var chkTermsLocator = By.XPath("//input[@id='ctl00_MainContent_chkTerms']");
+                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(10));
+                _webDriver.WaitUntilElementIsVisible(chkTermsLocator, TimeSpan.FromSeconds(10));
+                
+                // Re-find element fresh to avoid stale reference
+                var chkTerms = _webDriver.FindElement(chkTermsLocator);
+                chkTerms.ClickSafe(_webDriver);
 
                 if (_webDriver.Url.Contains("EmailVerification"))
                 {
@@ -119,8 +132,10 @@ namespace Selenium.BaseComponents.Services
         {
             try
             {
-                var cancelButton = _webDriver.CreateSmartElement(By.Id("cancel-button")).Element;
-                cancelButton.Click();
+                var cancelButtonLocator = By.Id("cancel-button");
+                _webDriver.WaitUntilElementIsVisible(cancelButtonLocator, TimeSpan.FromSeconds(5));
+                var cancelButton = _webDriver.FindElement(cancelButtonLocator);
+                cancelButton.ClickSafe(_webDriver);
             }
             catch (Exception e)
             {
@@ -133,8 +148,10 @@ namespace Selenium.BaseComponents.Services
         /// </summary>
         public void Logout()
         {
-            var logoutButton = _webDriver.CreateSmartElement(By.Id("ctl00_LoginView2_lnkLogout")).Element;
-            logoutButton.Click();
+            var logoutLocator = By.Id("ctl00_LoginView2_lnkLogout");
+            _webDriver.WaitUntilElementIsVisible(logoutLocator, TimeSpan.FromSeconds(5));
+            var logoutButton = _webDriver.FindElement(logoutLocator);
+            logoutButton.ClickSafe(_webDriver);
         }
     }
 }

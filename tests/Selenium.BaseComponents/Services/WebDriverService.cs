@@ -22,11 +22,17 @@ namespace Selenium.BaseComponents.Services
             chromeOptions.AddArgument("--no-sandbox");
             chromeOptions.AddArgument("--ignore-certificate-errors");
             chromeOptions.AddArgument("--disable-search-engine-choice-screen");
-
-            // Check if running in CI environment
-            if (Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
+            chromeOptions.AddArgument("--headless=new");
+            // Set window size for headless mode - required to prevent ElementNotInteractableException
+            // Headless Chrome defaults to a small viewport which can cause elements to be off-screen
+            chromeOptions.AddArgument("--window-size=1920,1080");
+            // Check if running in CI environment or headless mode requested
+            if (headless || Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
             {
-                chromeOptions.AddArgument("--headless");
+                chromeOptions.AddArgument("--headless=new");
+                // Set window size for headless mode - required to prevent ElementNotInteractableException
+                // Headless Chrome defaults to a small viewport which can cause elements to be off-screen
+                chromeOptions.AddArgument("--window-size=1920,1080");
             }
 
             var service = ChromeDriverService.CreateDefaultService();
@@ -61,10 +67,12 @@ namespace Selenium.BaseComponents.Services
             edgeOptions.AddArgument("--ignore-certificate-errors");
             edgeOptions.AddArgument("--disable-search-engine-choice-screen");
 
-            // Check if running in CI environment
-            if (Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
+            // Check if running in CI environment or headless mode requested
+            if (headless || Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
             {
-                edgeOptions.AddArgument("--headless");
+                edgeOptions.AddArgument("--headless=new");
+                // Set window size for headless mode - required to prevent ElementNotInteractableException
+                edgeOptions.AddArgument("--window-size=1920,1080");
             }
 
             var service = EdgeDriverService.CreateDefaultService();
