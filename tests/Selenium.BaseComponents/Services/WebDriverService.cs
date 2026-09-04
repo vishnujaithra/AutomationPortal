@@ -61,22 +61,45 @@ namespace Selenium.BaseComponents.Services
         {
             EdgeOptions edgeOptions = new EdgeOptions();
             edgeOptions.AddArgument("--disable-notifications");
-            edgeOptions.AddArgument("--start-maximized");
             edgeOptions.AddArgument("--disable-extensions");
             edgeOptions.AddArgument("--no-sandbox");
             edgeOptions.AddArgument("--ignore-certificate-errors");
             edgeOptions.AddArgument("--disable-search-engine-choice-screen");
+            edgeOptions.AddArgument("--disable-gpu");
+            edgeOptions.AddArgument("--disable-dev-shm-usage");
+            
+            // Always set window size to ensure consistent viewport
+            edgeOptions.AddArgument("--window-size=1920,1080");
 
             // Check if running in CI environment or headless mode requested
             if (headless || Environment.GetEnvironmentVariable("AGENT_MACHINENAME") != null)
             {
                 edgeOptions.AddArgument("--headless=new");
-                // Set window size for headless mode - required to prevent ElementNotInteractableException
-                edgeOptions.AddArgument("--window-size=1920,1080");
+            }
+            else
+            {
+                // Non-headless mode: maximize window
+                edgeOptions.AddArgument("--start-maximized");
             }
 
             var service = EdgeDriverService.CreateDefaultService();
-            return new EdgeDriver(service, edgeOptions, TimeSpan.FromMinutes(5));
+            var edgeDriver = new EdgeDriver(service, edgeOptions, TimeSpan.FromMinutes(5));
+
+            // Fix for "thenCore is not a function" error caused by html2pdf.js/jsPDF
+            // This patches the Promise prototype before any page scripts run
+            edgeDriver.ExecuteCdpCommand("Page.addScriptToEvaluateOnNewDocument",
+                new Dictionary<string, object>
+                {
+                    { "source", @"
+                        window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;
+                        window.cdc_adoQpoasnfa76pfcZLmcfl_JSON = window.JSON;
+                        if (!Promise.prototype.thenCore) {
+                            Promise.prototype.thenCore = Promise.prototype.then;
+                        }
+                    " }
+                });
+
+            return edgeDriver;
         }
 
         /// <summary>

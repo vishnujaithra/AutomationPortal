@@ -56,41 +56,53 @@ namespace Selenium.BaseComponents.Services
         /// </summary>
         public void Login(string loginUrl, string userName, string password)
         {
+            const int defaultTimeout = 30; // Increased timeout for slow page loads
+            
             try
             {
+                Console.WriteLine($"Navigating to: {loginUrl}");
                 _webDriver.Navigate().GoToUrl(loginUrl);
-                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(10));
+                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(defaultTimeout));
+                Console.WriteLine($"Page loaded. Current URL: {_webDriver.Url}");
 
                 // Step 1: Enter username and click Next
                 var userNameLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_UserName']");
                 var nextButtonLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_btnNext']");
                 
-                _webDriver.WaitUntilElementIsVisible(userNameLocator, TimeSpan.FromSeconds(10));
+                Console.WriteLine("Waiting for username field...");
+                _webDriver.WaitUntilElementIsVisible(userNameLocator, TimeSpan.FromSeconds(defaultTimeout));
                 var userNameElement = _webDriver.FindElement(userNameLocator);
                 userNameElement.Set(userName);
+                Console.WriteLine("Username entered.");
                 
                 var nextButton = _webDriver.FindElement(nextButtonLocator);
                 nextButton.ClickSafe(_webDriver);
+                Console.WriteLine("Next button clicked.");
 
                 // Step 2: Enter password and click Login (elements appear after Next click)
                 var passwordLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_Password']");
                 var loginButtonLocator = By.XPath("//input[@id='ctl00_MainContent_Login1_LoginButton']");
                 
-                _webDriver.WaitUntilElementIsVisible(passwordLocator, TimeSpan.FromSeconds(10));
+                Console.WriteLine("Waiting for password field...");
+                _webDriver.WaitUntilElementIsVisible(passwordLocator, TimeSpan.FromSeconds(defaultTimeout));
                 var passwordElement = _webDriver.FindElement(passwordLocator);
                 passwordElement.Set(password);
+                Console.WriteLine("Password entered.");
                 
                 var loginButton = _webDriver.FindElement(loginButtonLocator);
                 loginButton.ClickSafe(_webDriver);
+                Console.WriteLine("Login button clicked.");
 
                 // Step 3: Accept terms (checkbox appears after login - wait for page to load)
                 var chkTermsLocator = By.XPath("//input[@id='ctl00_MainContent_chkTerms']");
-                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(10));
-                _webDriver.WaitUntilElementIsVisible(chkTermsLocator, TimeSpan.FromSeconds(10));
+                _webDriver.WaitUntilDocumentIsReady(TimeSpan.FromSeconds(defaultTimeout));
+                Console.WriteLine("Waiting for terms checkbox...");
+                _webDriver.WaitUntilElementIsVisible(chkTermsLocator, TimeSpan.FromSeconds(defaultTimeout));
                 
                 // Re-find element fresh to avoid stale reference
                 var chkTerms = _webDriver.FindElement(chkTermsLocator);
                 chkTerms.ClickSafe(_webDriver);
+                Console.WriteLine("Terms checkbox clicked.");
 
                 if (_webDriver.Url.Contains("EmailVerification"))
                 {
@@ -102,10 +114,22 @@ namespace Selenium.BaseComponents.Services
                 {
                     ClickCancelButton();
                 }
+                
+                Console.WriteLine("Login completed successfully.");
             }
             catch (Exception ex)
             {
-                throw new Exception($"Login failed: {ex.Message}", ex);
+                // Capture additional debug info
+                string currentUrl = "unknown";
+                string pageSource = "unavailable";
+                try
+                {
+                    currentUrl = _webDriver.Url;
+                    pageSource = _webDriver.PageSource?.Substring(0, Math.Min(500, _webDriver.PageSource?.Length ?? 0)) ?? "null";
+                }
+                catch { }
+                
+                throw new Exception($"Login failed: {ex.Message}. Current URL: {currentUrl}. Page source preview: {pageSource}", ex);
             }
         }
 
